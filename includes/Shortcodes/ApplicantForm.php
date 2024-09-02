@@ -116,7 +116,7 @@ class ApplicantForm extends TalentShortcode
                     'mobile'          => $mobile,
                     'post_name'       => $post_name,
                     'submission_date' => current_time( 'mysql' ),
-                    'cv_url'          => $cv_path,
+                    'cv_path'         => $cv_path,
                  ] );
 
                 // Send notification email
@@ -142,5 +142,42 @@ class ApplicantForm extends TalentShortcode
             }
         }
         wp_die();
+    }
+
+    /**
+     * Handle contact deletion
+     *
+     * @return void
+     */
+    public function delete_application()
+    {
+        if ( !wp_verify_nonce( $_REQUEST[ '_wpnonce' ], 'talent-portal-admin-nonce' ) ) {
+            wp_send_json_error( [
+                'message' => __( 'Nonce verification failed!', 'talent-portal' ),
+             ] );
+            return;
+        }
+
+        if ( !current_user_can( 'manage_options' ) ) {
+            wp_send_json_error( [
+                'message' => __( 'No permission!', 'talent-portal' ),
+             ] );
+            return;
+        }
+
+        $id = isset( $_REQUEST[ 'id' ] ) ? intval( $_REQUEST[ 'id' ] ) : 0;
+
+        if ( !$id ) {
+            wp_send_json_error( [
+                'message' => __( 'Invalid application ID!', 'talent-portal' ),
+             ] );
+            return;
+        }
+
+        $this->applicant_repository->delete( $id );
+
+        wp_send_json_success( [
+            'message' => __( 'Application deleted successfully!', 'talent-portal' ),
+         ] );
     }
 }

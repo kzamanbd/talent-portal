@@ -117,7 +117,7 @@ class ApplicationList extends \WP_List_Table
             case 'submission_date':
                 return wp_date( get_option( 'date_format' ), strtotime( $item->submission_date ) );
             case 'cv':
-                return '<a href="' . wp_get_upload_dir()[ 'baseurl' ] . "/" . $item->cv_url . '">Download CV</a>';
+                return '<a href="' . wp_get_upload_dir()[ 'baseurl' ] . "/" . $item->cv_path . '">Download CV</a>';
             default:
                 return isset( $item->$column_name ) ? $item->$column_name : '';
         }

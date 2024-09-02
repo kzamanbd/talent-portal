@@ -60,9 +60,20 @@ class ApplicantRepository
 
     public function delete( $ids )
     {
-        global $wpdb;
-        $ids_placeholder = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
-        return $wpdb->query( $wpdb->prepare( "DELETE FROM $this->table_name WHERE id IN ($ids_placeholder)", $ids ) );
+        try {
+            global $wpdb;
+            $ids_placeholder = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
+            // if $cv_path is not empty, delete the file
+            $applicants = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->table_name WHERE id IN ($ids_placeholder)", $ids ) );
+            foreach ( $applicants as $applicant ) {
+                if ( !empty( $applicant[ 'cv_path' ] ) ) {
+                    unlink( wp_get_upload_dir()[ 'basedir' ] . '/' . $applicant[ 'cv_path' ] );
+                }
+            }
+            return $wpdb->query( $wpdb->prepare( "DELETE FROM $this->table_name WHERE id IN ($ids_placeholder)", $ids ) );
+        } catch ( \Exception $e ) {
+            return false;
+        }
     }
 
     public function count( $search = '' )
@@ -75,5 +86,18 @@ class ApplicantRepository
         }
 
         return $wpdb->get_var( $query );
+    }
+
+    public function uninstaller()
+    {
+        global $wpdb;
+        // if cv_path is not empty, delete the file
+        $applicants = $wpdb->get_results( "SELECT * FROM $this->table_name" );
+        foreach ( $applicants as $applicant ) {
+            if ( !empty( $applicant[ 'cv_path' ] ) ) {
+                unlink( wp_get_upload_dir()[ 'basedir' ] . '/' . $applicant[ 'cv_path' ] );
+            }
+        }
+        return $wpdb->query( "DROP TABLE IF EXISTS $this->table_name" );
     }
 }

@@ -5,6 +5,12 @@
  * @package TalentPortal
  */
 
-if (!defined('WP_UNINSTALL_PLUGIN')) {
-    die;
+use TalentPortal\Repositories\ApplicantRepository;
+
+if ( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
+    exit;
 }
+
+// Clear Database stored data
+
+( new ApplicantRepository() )->uninstaller();

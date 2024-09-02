@@ -2,7 +2,6 @@
 
 namespace TalentPortal;
 
-use TalentPortal\Install\Installer;
 use TalentPortal\Shortcodes\ApplicantForm;
 use TalentPortal\Traits\Singleton;
 
@@ -18,51 +17,8 @@ class Ajax
     function __construct()
     {
         $form = new ApplicantForm();
-        add_action( 'wp_ajax_talent-portal-delete', [ $this, 'delete_application' ] );
+        add_action( 'wp_ajax_talent-portal-delete', [ $form, 'delete_application' ] );
         add_action( 'wp_ajax_talent_portal_apply', [ $form, 'handle_applicant_form_submission' ] );
         add_action( 'wp_ajax_nopriv_talent_portal_apply', [ $form, 'handle_applicant_form_submission' ] );
-    }
-
-    /**
-     * Handle contact deletion
-     *
-     * @return void
-     */
-    public function delete_application()
-    {
-        if ( !wp_verify_nonce( $_REQUEST[ '_wpnonce' ], 'talent-portal-admin-nonce' ) ) {
-            wp_send_json_error( [
-                'message' => __( 'Nonce verification failed!', 'talent-portal' ),
-             ] );
-        }
-
-        if ( !current_user_can( 'manage_options' ) ) {
-            wp_send_json_error( [
-                'message' => __( 'No permission!', 'talent-portal' ),
-             ] );
-        }
-
-        $id = isset( $_REQUEST[ 'id' ] ) ? intval( $_REQUEST[ 'id' ] ) : 0;
-        $this->wd_ac_delete( $id );
-
-        wp_send_json_success();
-    }
-
-    /**
-     * Delete contact
-     *
-     * @param int $id
-     * @return void
-     */
-    public function wd_ac_delete( $id )
-    {
-        global $wpdb;
-
-        $table_name = $wpdb->prefix . Installer::TABLE_NAME;
-        return $wpdb->delete(
-            $table_name,
-            [ 'id' => $id ],
-            [ '%d' ]
-        );
     }
 }
