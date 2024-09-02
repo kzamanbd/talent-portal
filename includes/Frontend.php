@@ -18,8 +18,4 @@ class Frontend
         //
     }
 
-    public static function init()
-    {
-        return self::instance();
-    }
 }

@@ -3,6 +3,7 @@
 namespace WpDraftScripts\TalentPortal\Shortcodes;
 
 use WpDraftScripts\TalentPortal\Abstracts\TalentShortcode;
+use WpDraftScripts\TalentPortal\Install\Installer;
 
 /**
  * Class ApplicantForm
@@ -58,9 +59,9 @@ class ApplicantForm extends TalentShortcode
             $move = wp_handle_upload( $uploaded_file, $upload_overrides );
 
             if ( $move && !isset( $move[ 'error' ] ) ) {
-                $cv_url = $move[ 'url' ];
+                $cv_path = str_replace( wp_get_upload_dir()[ 'baseurl' ] . '/', '', $move[ 'url' ] );
 
-                $table_name = $wpdb->prefix . 'talent_submissions';
+                $table_name = $wpdb->prefix . Installer::TABLE_NAME;
 
                 $wpdb->insert( $table_name, array(
                     'first_name' => $first_name,
@@ -69,11 +70,12 @@ class ApplicantForm extends TalentShortcode
                     'email'      => $email,
                     'mobile'     => $mobile,
                     'post_name'  => $post_name,
-                    'cv_url'     => $cv_url,
+                    'cv_url'     => $cv_path,
                 ) );
 
                 // Send notification email
                 $to = $email;
+                $cv_url = $move[ 'url' ];
                 $subject = "New Applicant Submission - $first_name $last_name";
                 $message = "You have received a new application for the position of $post_name.\n\n" .
                     "Name: $first_name $last_name\n" .

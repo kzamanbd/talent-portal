@@ -20,11 +20,6 @@ class Dashboard
         add_action( 'wp_dashboard_setup', [ $this, 'add_dashboard_widgets' ] );
     }
 
-    public static function init()
-    {
-        return self::instance();
-    }
-
     public function add_dashboard_widgets()
     {
         wp_add_dashboard_widget( 'applicant_submissions_widget', 'Recent Applicant Submissions', [ $this, 'render_applicant_submissions_widget' ] );

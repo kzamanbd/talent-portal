@@ -13,21 +13,19 @@
  */
 
 use WpDraftScripts\TalentPortal\Admin;
+use WpDraftScripts\TalentPortal\Assets;
 use WpDraftScripts\TalentPortal\Frontend;
 use WpDraftScripts\TalentPortal\Install\Installer;
 use WpDraftScripts\TalentPortal\Shortcodes\Shortcodes;
-use WpDraftScripts\TalentPortal\Assets;
 use WpDraftScripts\TalentPortal\Widgets\Dashboard;
 
-if (!defined('ABSPATH')) {
-    die('You are not allowed to access this file.');
+if ( !defined( 'ABSPATH' ) ) {
+    die( 'You are not allowed to access this file.' );
 }
 
-
-if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
-    require_once dirname(__FILE__) . '/vendor/autoload.php';
+if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
+    require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 }
-
 
 final class TalentPortal
 {
@@ -58,7 +56,7 @@ final class TalentPortal
      *
      * @var array
      */
-    private $container = [];
+    private $container = [  ];
 
     /**
      * Plugin URL
@@ -92,8 +90,8 @@ final class TalentPortal
     {
         $this->define_constants();
 
-        register_activation_hook(__FILE__, [$this, 'activate']);
-        register_deactivation_hook(__FILE__, [$this, 'deactivate']);
+        register_activation_hook( __FILE__, [ $this, 'activate' ] );
+        register_deactivation_hook( __FILE__, [ $this, 'deactivate' ] );
     }
 
     /**
@@ -103,7 +101,7 @@ final class TalentPortal
      */
     public function is_supported_php()
     {
-        if (version_compare(PHP_VERSION, $this->min_php, '<=')) {
+        if ( version_compare( PHP_VERSION, $this->min_php, '<=' ) ) {
             return false;
         }
 
@@ -115,13 +113,13 @@ final class TalentPortal
      */
     private function define_constants()
     {
-        define('WP_TALENT_PORTAL_VERSION', $this->version);
-        define('TALENT_PORTAL_TEXT_DOMAIN', $this->text_domain);
-        define('WP_TALENT_PORTAL_FILE', __FILE__);
-        define('WP_TALENT_PORTAL_PLUGIN_URL', plugins_url('', WP_TALENT_PORTAL_FILE));
-        define('WP_TALENT_PORTAL_PLUGIN_PATH', plugin_dir_path(WP_TALENT_PORTAL_FILE));
-        define('WP_TALENT_PORTAL_PLUGIN_BASENAME', plugin_basename(WP_TALENT_PORTAL_FILE));
-        define('WP_TALENT_PORTAL_ASSETS', WP_TALENT_PORTAL_PLUGIN_URL . '/assets');
+        define( 'WP_TALENT_PORTAL_VERSION', $this->version );
+        define( 'TALENT_PORTAL_TEXT_DOMAIN', $this->text_domain );
+        define( 'WP_TALENT_PORTAL_FILE', __FILE__ );
+        define( 'WP_TALENT_PORTAL_PLUGIN_URL', plugins_url( '', WP_TALENT_PORTAL_FILE ) );
+        define( 'WP_TALENT_PORTAL_PLUGIN_PATH', plugin_dir_path( WP_TALENT_PORTAL_FILE ) );
+        define( 'WP_TALENT_PORTAL_PLUGIN_BASENAME', plugin_basename( WP_TALENT_PORTAL_FILE ) );
+        define( 'WP_TALENT_PORTAL_ASSETS', WP_TALENT_PORTAL_PLUGIN_URL . '/assets' );
 
         $this->plugin_url = WP_TALENT_PORTAL_PLUGIN_URL;
         $this->plugin_path = WP_TALENT_PORTAL_PLUGIN_PATH;
@@ -138,7 +136,7 @@ final class TalentPortal
      */
     public static function init()
     {
-        if (!self::$instance) {
+        if ( !self::$instance ) {
             self::$instance = new self();
         }
 
@@ -150,7 +148,7 @@ final class TalentPortal
      */
     public function activate()
     {
-        (new Installer)->run();
+        ( new Installer )->run();
     }
 
     /**
@@ -167,7 +165,7 @@ final class TalentPortal
      */
     private function init_hooks()
     {
-        add_action('init', [$this, 'init_classes']);
+        add_action( 'init', [ $this, 'init_classes' ] );
     }
 
     /**
@@ -176,18 +174,18 @@ final class TalentPortal
     public function init_classes()
     {
 
-        if (is_admin()) {
-            Admin::init();
-            Dashboard::init();
+        if ( is_admin() ) {
+            Admin::instance();
+            Dashboard::instance();
         } else {
-            Frontend::init();
+            Frontend::instance();
         }
 
         // assets init
         new Assets();
 
         // register shortcode
-        Shortcodes::init();
+        Shortcodes::instance();
     }
 }
 
