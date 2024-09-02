@@ -1,6 +1,5 @@
 <?php
 
-
 namespace WpDraftScripts\TalentPortal\Abstracts;
 
 /**
@@ -16,7 +15,7 @@ abstract class TalentShortcode
      */
     public function __construct()
     {
-        add_shortcode($this->get_shortcode_tag(), [$this, 'render']);
+        add_shortcode( $this->get_shortcode_tag(), [ $this, 'render' ] );
     }
 
     /**
@@ -31,5 +30,5 @@ abstract class TalentShortcode
      * @param string $content
      * @return void
      */
-    abstract public function render($attrs, $content = '');
+    abstract public function render( $attrs, $content = '' );
 }

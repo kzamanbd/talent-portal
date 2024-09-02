@@ -2,7 +2,6 @@
 
 namespace WpDraftScripts\TalentPortal\Shortcodes;
 
-
 /**
  * Class Shortcodes
  * @package WpDraftScripts\TalentPortal\Shortcodes

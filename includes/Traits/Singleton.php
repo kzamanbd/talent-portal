@@ -21,10 +21,10 @@ trait Singleton
      */
     public static function instance()
     {
-        if (! isset(static::$instance) && ! (static::$instance instanceof static)) {
+        if ( !isset( static::$instance ) && !( static::$instance instanceof static ) ) {
             static::$instance = new static();
 
-            if (method_exists(static::$instance, 'boot')) {
+            if ( method_exists( static::$instance, 'boot' ) ) {
                 static::$instance->boot();
             }
         }

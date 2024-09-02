@@ -2,7 +2,6 @@
 
 namespace WpDraftScripts\TalentPortal;
 
-
 /**
  * Class Hooks
  * @package WpDraftScripts\TalentPortal
@@ -10,5 +9,8 @@ namespace WpDraftScripts\TalentPortal;
 class Hooks
 {
 
-    public function __construct() {}
+    public function __construct()
+    {
+        //
+    }
 }

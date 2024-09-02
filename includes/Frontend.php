@@ -2,7 +2,6 @@
 
 namespace WpDraftScripts\TalentPortal;
 
-use WpDraftScripts\TalentPortal\Interfaces\Action;
 use WpDraftScripts\TalentPortal\Traits\Singleton;
 
 /**
@@ -16,7 +15,7 @@ class Frontend
 
     public function __construct()
     {
-        // 
+        //
     }
 
     public static function init()

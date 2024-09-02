@@ -2,15 +2,14 @@
 
 namespace WpDraftScripts\TalentPortal\Install;
 
-
 /**
- * Class Installer 
+ * Class Installer
  * @package WpDraftScripts\TalentPortal
  */
 
 class Installer
 {
-    const TABLE_NAME = 'talent_submissions';
+    const TABLE_NAME = 'applicant_submissions';
     /**
      * Run the installer
      *
@@ -27,13 +26,13 @@ class Installer
      */
     public function add_version()
     {
-        $installed = get_option('talent_portal_installed');
+        $installed = get_option( 'talent_portal_installed' );
 
-        if (! $installed) {
-            update_option('talent_portal_installed', time());
+        if ( !$installed ) {
+            update_option( 'talent_portal_installed', time() );
         }
 
-        update_option('talent_portal_version', WP_TALENT_PORTAL_VERSION);
+        update_option( 'talent_portal_version', WP_TALENT_PORTAL_VERSION );
     }
 
     /**
@@ -62,10 +61,10 @@ class Installer
             PRIMARY KEY (id)
         ) $charset_collate";
 
-        if (! function_exists('dbDelta')) {
+        if ( !function_exists( 'dbDelta' ) ) {
             require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         }
 
-        dbDelta($schema);
+        dbDelta( $schema );
     }
 }

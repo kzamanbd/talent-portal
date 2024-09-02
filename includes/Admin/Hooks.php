@@ -2,10 +2,10 @@
 
 namespace WpDraftScripts\TalentPortal\Admin;
 
-
 /**
- * Class Hooks 
+ * Class Hooks
  * @package WpDraftScripts\TalentPortal
  */
 
-class Hooks {}
+class Hooks
+{}
