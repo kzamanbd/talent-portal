@@ -88,6 +88,12 @@ class ApplicantRepository
         return $wpdb->get_var( $query );
     }
 
+    public function latest_applications( $limit = 5 )
+    {
+        global $wpdb;
+        return $wpdb->get_results( "SELECT * FROM $this->table_name ORDER BY submission_date DESC LIMIT $limit" );
+    }
+
     public function uninstaller()
     {
         global $wpdb;

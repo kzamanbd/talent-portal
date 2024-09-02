@@ -2,7 +2,7 @@
 
 namespace TalentPortal\Widgets;
 
-use TalentPortal\Install\Installer;
+use TalentPortal\Repositories\ApplicantRepository;
 use TalentPortal\Traits\Helpers;
 use TalentPortal\Traits\Singleton;
 
@@ -22,15 +22,18 @@ class Dashboard
 
     public function add_dashboard_widgets()
     {
-        wp_add_dashboard_widget( 'applicant_submissions_widget', 'Recent Applicant Submissions', [ $this, 'render_applicant_submissions_widget' ] );
+        wp_add_dashboard_widget(
+            'applicant_submissions_widget',
+            __( 'Latest Applicant Submissions', TALENT_PORTAL_TEXT_DOMAIN ),
+            [ $this, 'render_applicant_submissions_widget' ]
+        );
     }
 
     public function render_applicant_submissions_widget()
     {
-        global $wpdb;
-        $table_name = $wpdb->prefix . Installer::TABLE_NAME;
+        $repository = new ApplicantRepository();
 
-        $results = $wpdb->get_results( "SELECT * FROM $table_name ORDER BY submission_date DESC LIMIT 5" );
+        $results = $repository->latest_applications( 5 );
 
         if ( $results ) {
             $this->view( 'dashboard', [
@@ -38,6 +41,6 @@ class Dashboard
              ] );
             return;
         }
-        echo 'No submissions found.';
+        echo __( 'No applicant submissions found', TALENT_PORTAL_TEXT_DOMAIN );
     }
 }

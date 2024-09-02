@@ -58,7 +58,7 @@ class ApplicantForm extends TalentShortcode
     {
         if ( !wp_verify_nonce( $_REQUEST[ '_wpnonce' ], 'talent_portal_apply' ) ) {
             wp_send_json_error( [
-                'message' => __( 'Request verification failed!', 'talent-portal' ),
+                'message' => __( 'Request verification failed!', TALENT_PORTAL_TEXT_DOMAIN ),
              ] );
             return;
         }
@@ -73,7 +73,7 @@ class ApplicantForm extends TalentShortcode
 
             if ( empty( $first_name ) || empty( $last_name ) || empty( $address ) || empty( $email ) || empty( $mobile ) || empty( $post_name ) ) {
                 wp_send_json_error( [
-                    'message' => 'All fields are required.',
+                    'message' => __( 'All fields are required!', TALENT_PORTAL_TEXT_DOMAIN ),
                  ] );
                 return;
             }
@@ -81,17 +81,17 @@ class ApplicantForm extends TalentShortcode
             // Validate email
             if ( !is_email( $email ) ) {
                 wp_send_json_error( [
-                    'message' => 'Invalid email address.',
+                    'message' => __( 'Invalid email address!', TALENT_PORTAL_TEXT_DOMAIN ),
                  ] );
                 return;
             }
 
-            // check email already exists
+            // check already applied
             $applicant = $this->applicant_repository->find_by_email( $email );
 
             if ( $applicant ) {
                 return wp_send_json_error( [
-                    'message' => 'Email already exists.',
+                    'message' => __( 'You have already applied for this post!', TALENT_PORTAL_TEXT_DOMAIN ),
                  ] );
             }
 
@@ -133,7 +133,7 @@ class ApplicantForm extends TalentShortcode
                 wp_mail( $to, $subject, $message );
 
                 wp_send_json_success( [
-                    'message' => 'Form submitted successfully!',
+                    'message' => __( 'Application submitted successfully!', TALENT_PORTAL_TEXT_DOMAIN ),
                  ] );
             } else {
                 wp_send_json_error( [
@@ -153,14 +153,14 @@ class ApplicantForm extends TalentShortcode
     {
         if ( !wp_verify_nonce( $_REQUEST[ '_wpnonce' ], 'talent-portal-admin-nonce' ) ) {
             wp_send_json_error( [
-                'message' => __( 'Nonce verification failed!', 'talent-portal' ),
+                'message' => __( 'Nonce verification failed!', TALENT_PORTAL_TEXT_DOMAIN),
              ] );
             return;
         }
 
         if ( !current_user_can( 'manage_options' ) ) {
             wp_send_json_error( [
-                'message' => __( 'No permission!', 'talent-portal' ),
+                'message' => __( 'No permission!', TALENT_PORTAL_TEXT_DOMAIN ),
              ] );
             return;
         }
@@ -169,7 +169,7 @@ class ApplicantForm extends TalentShortcode
 
         if ( !$id ) {
             wp_send_json_error( [
-                'message' => __( 'Invalid application ID!', 'talent-portal' ),
+                'message' => __( 'Invalid application ID!', TALENT_PORTAL_TEXT_DOMAIN),
              ] );
             return;
         }
@@ -177,7 +177,7 @@ class ApplicantForm extends TalentShortcode
         $this->applicant_repository->delete( $id );
 
         wp_send_json_success( [
-            'message' => __( 'Application deleted successfully!', 'talent-portal' ),
+            'message' => __( 'Application deleted successfully!', TALENT_PORTAL_TEXT_DOMAIN ),
          ] );
     }
 }

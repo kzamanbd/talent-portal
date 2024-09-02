@@ -39,7 +39,7 @@ class ApplicationList extends \WP_List_Table
         $this->applicant_repository = new ApplicantRepository();
 
         $this->prepare_items();
-        $this->search_box( __( 'Search Applicants', 'talent-portal' ), 'applicant-search-input' );
+        $this->search_box( __( 'Search Applicants', TALENT_PORTAL_TEXT_DOMAIN ), 'applicant-search-input' );
 
         parent::display();
 
@@ -54,7 +54,7 @@ class ApplicationList extends \WP_List_Table
      */
     public function no_items()
     {
-        _e( 'No talent found', 'talent-portal' );
+        _e( 'No talent found', TALENT_PORTAL_TEXT_DOMAIN );
     }
 
     /**
@@ -99,12 +99,12 @@ class ApplicationList extends \WP_List_Table
     {
         return [
             'cb'              => '<input type="checkbox" />',
-            'name'            => __( 'Name', 'talent-portal' ),
-            'email'           => __( 'Email', 'talent-portal' ),
-            'mobile'          => __( 'Mobile', 'talent-portal' ),
-            'post_name'       => __( 'Post Name', 'talent-portal' ),
-            'submission_date' => __( 'Submission Date', 'talent-portal' ),
-            'cv'              => __( 'CV', 'talent-portal' ),
+            'name'            => __( 'Name', TALENT_PORTAL_TEXT_DOMAIN ),
+            'email'           => __( 'Email', TALENT_PORTAL_TEXT_DOMAIN ),
+            'mobile'          => __( 'Mobile', TALENT_PORTAL_TEXT_DOMAIN ),
+            'post_name'       => __( 'Post Name', TALENT_PORTAL_TEXT_DOMAIN ),
+            'submission_date' => __( 'Submission Date', TALENT_PORTAL_TEXT_DOMAIN ),
+            'cv'              => __( 'CV', TALENT_PORTAL_TEXT_DOMAIN ),
          ];
     }
 
@@ -117,7 +117,7 @@ class ApplicationList extends \WP_List_Table
             case 'submission_date':
                 return wp_date( get_option( 'date_format' ), strtotime( $item->submission_date ) );
             case 'cv':
-                return '<a href="' . wp_get_upload_dir()[ 'baseurl' ] . "/" . $item->cv_path . '">Download CV</a>';
+                return sprintf( '<a href="%s" target="_blank">%s</a>', $item->cv_path, __( 'View CV', TALENT_PORTAL_TEXT_DOMAIN ) );
             default:
                 return isset( $item->$column_name ) ? $item->$column_name : '';
         }
@@ -151,7 +151,7 @@ class ApplicationList extends \WP_List_Table
     public function get_bulk_actions()
     {
         $actions = array(
-            'trash' => __( 'Move to Trash', 'talent-portal' ),
+            'trash' => __( 'Move to Trash', TALENT_PORTAL_TEXT_DOMAIN ),
         );
 
         return $actions;
@@ -169,7 +169,7 @@ class ApplicationList extends \WP_List_Table
                 $ids = array_map( 'intval', $_POST[ 'applicant_id' ] );
                 $this->applicant_repository->delete( $ids );
                 // Optionally add a notice
-                echo '<div class="updated"><p>' . __( 'Selected applicants have been deleted.', 'talent-portal' ) . '</p></div>';
+                echo '<div class="updated"><p>' . __( 'Selected applicants have been deleted.', TALENT_PORTAL_TEXT_DOMAIN ) . '</p></div>';
             }
         }
     }
@@ -185,7 +185,7 @@ class ApplicationList extends \WP_List_Table
     {
         $actions = [  ];
 
-        $actions[ 'delete' ] = sprintf( '<a href="#" class="submitdelete" data-id="%s">%s</a>', $item->id, __( 'Trash', 'talent-portal' ) );
+        $actions[ 'delete' ] = sprintf( '<a href="#" class="submitdelete" data-id="%s">%s</a>', $item->id, __( 'Trash', TALENT_PORTAL_TEXT_DOMAIN ) );
 
         return sprintf(
             '<a href="%1$s"><strong>%2$s</strong></a> %3$s',
@@ -220,7 +220,7 @@ class ApplicationList extends \WP_List_Table
     {
         echo '<p class="search-box">';
         echo '<label class="screen-reader-text" for="' . esc_attr( $input_id ) . '">' . esc_html( $text ) . ':</label>';
-        echo '<input type="search" placeholder="Search" id="' . esc_attr( $input_id ) . '" name="s" value="' . esc_attr( isset( $_REQUEST[ 's' ] ) ? $_REQUEST[ 's' ] : '' ) . '" />';
+        echo '<input type="search" placeholder="Search..." id="' . esc_attr( $input_id ) . '" name="s" value="' . esc_attr( isset( $_REQUEST[ 's' ] ) ? $_REQUEST[ 's' ] : '' ) . '" />';
         submit_button( $text, '', '', false, [ 'id' => 'search-submit' ] );
         echo '</p>';
     }

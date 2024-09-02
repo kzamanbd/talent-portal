@@ -167,6 +167,19 @@ final class TalentPortal
     private function init_hooks()
     {
         add_action( 'init', [ $this, 'init_classes' ] );
+        add_action( 'plugins_loaded', [ $this, 'applicant_submission_load_textdomain' ] );
+    }
+
+    /**
+     * Load the plugin text domain
+     */
+    public function applicant_submission_load_textdomain()
+    {
+        load_plugin_textdomain(
+            TALENT_PORTAL_TEXT_DOMAIN,
+            false,
+            WP_TALENT_PORTAL_PATH . 'languages'
+        );
     }
 
     /**
