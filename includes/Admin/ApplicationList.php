@@ -31,13 +31,12 @@ class ApplicationList extends \WP_List_Table
          ] );
 
         $this->prepare_items();
-        $this->search_box( 'search', 'search_id' );
+        $this->search_box( __( 'Search Applicants', 'talent-portal' ), 'applicant-search-input' );
 
-        $this->display();
+        parent::display();
 
         wp_enqueue_style( 'talent-admin-style' );
         wp_enqueue_script( 'talent-admin-script' );
-
     }
 
     /**
@@ -58,7 +57,8 @@ class ApplicationList extends \WP_List_Table
         $columns = $this->get_columns();
         $hidden = $this->get_hidden_columns();
         $sortable = $this->get_sortable_columns();
-
+        // Process bulk actions
+        $this->process_bulk_action();
         $this->_column_headers = [ $columns, $hidden, $sortable ];
 
         $per_page = 10;
@@ -81,7 +81,6 @@ class ApplicationList extends \WP_List_Table
             'total_items' => $this->submission_count(),
             'per_page'    => $per_page,
          ] );
-
     }
 
     /**
@@ -151,6 +150,31 @@ class ApplicationList extends \WP_List_Table
     }
 
     /**
+     * Process the bulk action
+     */
+
+    public function process_bulk_action()
+    {
+        if ( 'trash' === $this->current_action() ) {
+            // Check if any IDs are passed for deletion
+            if ( isset( $_POST[ 'applicant_id' ] ) && is_array( $_POST[ 'applicant_id' ] ) ) {
+                global $wpdb;
+                $table_name = $wpdb->prefix . Installer::TABLE_NAME;
+
+                // Sanitize the IDs
+                $ids = array_map( 'intval', $_POST[ 'applicant_id' ] );
+                $ids_placeholder = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
+
+                // Perform the deletion
+                $wpdb->query( $wpdb->prepare( "DELETE FROM $table_name WHERE id IN ($ids_placeholder)", $ids ) );
+
+                // Optionally add a notice
+                echo '<div class="updated"><p>' . __( 'Selected applicants have been deleted.', 'talent-portal' ) . '</p></div>';
+            }
+        }
+    }
+
+    /**
      * Render the "name" column
      *
      * @param  object $item
@@ -181,8 +205,24 @@ class ApplicationList extends \WP_List_Table
     protected function column_cb( $item )
     {
         return sprintf(
-            '<input type="checkbox" name="talent_id[]" value="%d" />', $item->id
+            '<input type="checkbox" name="applicant_id[]" value="%d" />',
+            $item->id
         );
+    }
+
+    /**
+     * Render the search box
+     * @param string $text
+     * @param string $input_id
+     */
+
+    public function search_box( $text, $input_id )
+    {
+        echo '<p class="search-box">';
+        echo '<label class="screen-reader-text" for="' . esc_attr( $input_id ) . '">' . esc_html( $text ) . ':</label>';
+        echo '<input type="search" placeholder="Search" id="' . esc_attr( $input_id ) . '" name="s" value="' . esc_attr( isset( $_REQUEST[ 's' ] ) ? $_REQUEST[ 's' ] : '' ) . '" />';
+        submit_button( $text, '', '', false, [ 'id' => 'search-submit' ] );
+        echo '</p>';
     }
 
     /**
@@ -202,28 +242,28 @@ class ApplicationList extends \WP_List_Table
             'order'   => 'ASC',
          ];
 
-        $args = wp_parse_args( $args, $defaults );
-
-        $last_changed = wp_cache_get_last_changed( 'application' );
-        $key = md5( serialize( array_diff_assoc( $args, $defaults ) ) );
-        $cache_key = "all:$key:$last_changed";
-
-        $sql = $wpdb->prepare(
-            "SELECT * FROM $table_name
-                ORDER BY {$args[ 'orderby' ]} {$args[ 'order' ]}
-                LIMIT %d, %d",
-            $args[ 'offset' ], $args[ 'number' ]
-        );
-
-        $items = wp_cache_get( $cache_key, 'application' );
-
-        if ( false === $items ) {
-            $items = $wpdb->get_results( $sql );
-
-            wp_cache_set( $cache_key, $items, 'application' );
+        // Handle search
+        $search = '';
+        if ( isset( $_REQUEST[ 's' ] ) && !empty( $_REQUEST[ 's' ] ) ) {
+            $search = trim( $_REQUEST[ 's' ] );
         }
 
-        return $items;
+        $args = wp_parse_args( $args, $defaults );
+
+        $sql = "SELECT * FROM $table_name ";
+
+        if ( !empty( $search ) ) {
+            $sql .= $wpdb->prepare( " WHERE first_name LIKE %s OR last_name LIKE %s OR email LIKE %s OR post_name LIKE %s", "%$search%", "%$search%", "%$search%", "%$search%" );
+        }
+
+        $sql .= $wpdb->prepare(
+            "ORDER BY {$args[ 'orderby' ]} {$args[ 'order' ]}
+                LIMIT %d, %d",
+            $args[ 'offset' ],
+            $args[ 'number' ]
+        );
+
+        return $wpdb->get_results( $sql );
     }
 
     /**
@@ -234,14 +274,6 @@ class ApplicationList extends \WP_List_Table
     {
         global $wpdb;
         $table_name = $wpdb->prefix . Installer::TABLE_NAME;
-        $count = wp_cache_get( 'count', 'application' );
-
-        if ( false === $count ) {
-            $count = (int) $wpdb->get_var( "SELECT count(id) FROM $table_name" );
-
-            wp_cache_set( 'count', $count, 'application' );
-        }
-
-        return $count;
+        return (int) $wpdb->get_var( "SELECT count(id) FROM $table_name" );
     }
 }

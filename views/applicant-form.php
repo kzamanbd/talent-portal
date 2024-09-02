@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['submit_applicant_form'])) {
+if ( isset( $_POST[ 'submit_applicant_form' ] ) ) {
     echo $this->handle_applicant_form_submission();
 }
 ?>
