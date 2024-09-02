@@ -3,20 +3,16 @@
 namespace WpDraftScripts\TalentPortal;
 
 use WpDraftScripts\TalentPortal\Interfaces\Action;
+use WpDraftScripts\TalentPortal\Traits\Singleton;
 
 /**
  * Class Frontend
  * @package WpDraftScripts\TalentPortal
  */
 
-class Frontend implements Action
+class Frontend
 {
-    /**
-     * Instance of self
-     *
-     * @var Frontend
-     */
-    public static $instance = null;
+    use Singleton;
 
     public function __construct()
     {
@@ -25,9 +21,6 @@ class Frontend implements Action
 
     public static function init()
     {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-        return self::$instance;
+        return self::instance();
     }
 }

@@ -16,6 +16,8 @@ use WpDraftScripts\TalentPortal\Admin;
 use WpDraftScripts\TalentPortal\Frontend;
 use WpDraftScripts\TalentPortal\Install\Installer;
 use WpDraftScripts\TalentPortal\Shortcodes\Shortcodes;
+use WpDraftScripts\TalentPortal\Assets;
+use WpDraftScripts\TalentPortal\Widgets\Dashboard;
 
 if (!defined('ABSPATH')) {
     die('You are not allowed to access this file.');
@@ -119,6 +121,7 @@ final class TalentPortal
         define('WP_TALENT_PORTAL_PLUGIN_URL', plugins_url('', WP_TALENT_PORTAL_FILE));
         define('WP_TALENT_PORTAL_PLUGIN_PATH', plugin_dir_path(WP_TALENT_PORTAL_FILE));
         define('WP_TALENT_PORTAL_PLUGIN_BASENAME', plugin_basename(WP_TALENT_PORTAL_FILE));
+        define('WP_TALENT_PORTAL_ASSETS', WP_TALENT_PORTAL_PLUGIN_URL . '/assets');
 
         $this->plugin_url = WP_TALENT_PORTAL_PLUGIN_URL;
         $this->plugin_path = WP_TALENT_PORTAL_PLUGIN_PATH;
@@ -175,9 +178,13 @@ final class TalentPortal
 
         if (is_admin()) {
             Admin::init();
+            Dashboard::init();
         } else {
             Frontend::init();
         }
+
+        // assets init
+        new Assets();
 
         // register shortcode
         Shortcodes::init();
@@ -188,4 +195,9 @@ final class TalentPortal
  * Initializes the TalentPortal() class
  */
 
-TalentPortal::init();
+function talent_portal()
+{
+    return TalentPortal::init();
+}
+
+talent_portal();

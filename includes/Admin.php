@@ -2,15 +2,17 @@
 
 namespace WpDraftScripts\TalentPortal;
 
-use WpDraftScripts\TalentPortal\Interfaces\Action;
+use WpDraftScripts\TalentPortal\Install\Installer;
+use WpDraftScripts\TalentPortal\Traits\Helpers;
 
 /**
  * Class Admin
  * @package WpDraftScripts\TalentPortal
  */
 
-class Admin implements Action
+class Admin
 {
+    use Helpers;
     /**
      * Instance of self
      *
@@ -48,12 +50,33 @@ class Admin implements Action
             'talent-portal',
             [$this, 'render'],
             'dashicons-admin-users',
-            6
         );
     }
 
-    public static function render()
+    public function render()
     {
-        echo '<h1>Talent Portal</h1>';
+        global $wpdb;
+        $table_name = $wpdb->prefix . Installer::TABLE_NAME;
+
+        if (isset($_POST['delete_submission'])) {
+            $id = intval($_POST['submission_id']);
+            $wpdb->delete($table_name, array('id' => $id));
+        }
+
+        $search = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
+        $sort_order = isset($_GET['sort']) && $_GET['sort'] === 'asc' ? 'asc' : 'desc';
+
+        $query = "SELECT * FROM $table_name";
+        if ($search) {
+            $query .= $wpdb->prepare(" WHERE first_name LIKE %s OR last_name LIKE %s", '%' . $search . '%', '%' . $search . '%');
+        }
+        $query .= " ORDER BY submission_date $sort_order";
+
+        $results = $wpdb->get_results($query);
+
+        $this->view('applicant-view', [
+            'search' => $search,
+            'results' => $results
+        ]);
     }
 }

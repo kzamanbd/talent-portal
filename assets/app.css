@@ -19,3 +19,12 @@
 #form_message {
     margin-top: 20px;
 }
+#form_message .success {
+    color: green;
+    margin-top: 20px;
+}
+
+#form_message .error {
+    color: red;
+    margin-top: 20px;
+}
