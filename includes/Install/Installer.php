@@ -19,6 +19,9 @@ class Installer
     {
         $this->add_version();
         $this->create_tables();
+
+        // Set a transient to trigger the admin notice after activation
+        set_transient( 'applicant_submission_activation_notice', true, 5 );
     }
 
     /**
@@ -56,7 +59,7 @@ class Installer
             email varchar(255) NOT NULL,
             mobile varchar(20) NOT NULL,
             post_name varchar(255) NOT NULL,
-            cv_url varchar(255) NOT NULL,
+            cv_path varchar(255) NOT NULL,
             submission_date datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
             PRIMARY KEY (id)
         ) $charset_collate";
