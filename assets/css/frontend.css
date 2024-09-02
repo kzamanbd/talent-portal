@@ -21,6 +21,7 @@
     box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 4px;
+    color: #333 !important;
 }
 #applicant_form textarea.talent__form-control {
     min-height: 100px;
@@ -34,24 +35,13 @@
     outline: none;
 }
 
-/* style input type file */
 #applicant_form input[type='file'].talent__form-control {
-    display: none;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: #333;
 }
-#applicant_form input[type='file'].talent__form-control + label {
-    border: 1px solid #ced4da;
-    padding: 5px 15px;
-    background-color: white;
-    border-radius: 4px;
-    cursor: pointer;
-}
-#applicant_form input[type='file'].talent__form-control + label:after {
-    content: 'Choose File';
-}
-#applicant_form input[type='file'].talent__form-control + label:before {
-    content: 'No file chosen';
-    margin-right: 10px;
-}
+
 #form_message {
     margin-top: 20px;
 }
@@ -67,10 +57,16 @@
 
 /* submit button */
 #applicant_form .talent__submit {
-    padding: 10px 20px;
-    background-color: #007bff;
     color: #fff;
     border: none;
+    padding: 10px 20px !important;
+    background-color: #007bff;
     border-radius: 4px;
     cursor: pointer;
+}
+
+#applicant_form .talent__submit:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.5;
 }

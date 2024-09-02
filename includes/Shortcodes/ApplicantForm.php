@@ -56,9 +56,13 @@ class ApplicantForm extends TalentShortcode
      */
     public function handle_applicant_form_submission()
     {
-        if ( !wp_verify_nonce( $_REQUEST[ '_wpnonce' ], 'talent_portal_form' ) ) {
-            return 'Nonce verification failed!';
+        if ( !wp_verify_nonce( $_REQUEST[ '_wpnonce' ], 'talent_portal_apply' ) ) {
+            wp_send_json_error( [
+                'message' => __( 'Request verification failed!', 'talent-portal' ),
+             ] );
+            return;
         }
+
         if ( $_SERVER[ 'REQUEST_METHOD' ] === 'POST' ) {
             $first_name = sanitize_text_field( $_POST[ 'first_name' ] );
             $last_name = sanitize_text_field( $_POST[ 'last_name' ] );
@@ -68,14 +72,27 @@ class ApplicantForm extends TalentShortcode
             $post_name = sanitize_text_field( $_POST[ 'post_name' ] );
 
             if ( empty( $first_name ) || empty( $last_name ) || empty( $address ) || empty( $email ) || empty( $mobile ) || empty( $post_name ) ) {
-                return '<div class="error">All fields are required.</div>';
+                wp_send_json_error( [
+                    'message' => 'All fields are required.',
+                 ] );
+                return;
+            }
+
+            // Validate email
+            if ( !is_email( $email ) ) {
+                wp_send_json_error( [
+                    'message' => 'Invalid email address.',
+                 ] );
+                return;
             }
 
             // check email already exists
             $applicant = $this->applicant_repository->find_by_email( $email );
 
             if ( $applicant ) {
-                return '<div class="error">Email already exists.</div>';
+                return wp_send_json_error( [
+                    'message' => 'Email already exists.',
+                 ] );
             }
 
             // Handle file upload
@@ -115,10 +132,13 @@ class ApplicantForm extends TalentShortcode
 
                 wp_mail( $to, $subject, $message );
 
-                return '<div class="success">Your application has been submitted successfully.</div>';
+                wp_send_json_success( [
+                    'message' => 'Form submitted successfully!',
+                 ] );
             } else {
-                // Return error message
-                return '<div class="error">Error uploading CV: ' . $move[ 'error' ] . '</div>';
+                wp_send_json_error( [
+                    'message' => 'Error uploading CV: ' . $move[ 'error' ],
+                 ] );
             }
         }
         wp_die();

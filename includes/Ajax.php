@@ -3,6 +3,7 @@
 namespace WpDraftScripts\TalentPortal;
 
 use WpDraftScripts\TalentPortal\Install\Installer;
+use WpDraftScripts\TalentPortal\Shortcodes\ApplicantForm;
 use WpDraftScripts\TalentPortal\Traits\Singleton;
 
 /**
@@ -16,7 +17,10 @@ class Ajax
      */
     function __construct()
     {
+        $form = new ApplicantForm();
         add_action( 'wp_ajax_talent-portal-delete', [ $this, 'delete_application' ] );
+        add_action( 'wp_ajax_talent_portal_apply', [ $form, 'handle_applicant_form_submission' ] );
+        add_action( 'wp_ajax_nopriv_talent_portal_apply', [ $form, 'handle_applicant_form_submission' ] );
     }
 
     /**
