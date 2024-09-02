@@ -53,8 +53,6 @@ final class TalentPortal
     /**
      * Holds various class instances
      *
-     * @since 2.6.10
-     *
      * @var array
      */
     private $container = [  ];
@@ -115,7 +113,6 @@ final class TalentPortal
     private function define_constants()
     {
         define( 'WP_TALENT_PORTAL_VERSION', $this->version );
-        define( 'TALENT_PORTAL_TEXT_DOMAIN', $this->text_domain );
         define( 'WP_TALENT_PORTAL_FILE', __FILE__ );
         define( 'WP_TALENT_PORTAL_PATH', plugin_dir_path( WP_TALENT_PORTAL_FILE ) );
         define( 'WP_TALENT_PORTAL_PLUGIN_URL', plugins_url( '', WP_TALENT_PORTAL_FILE ) );
@@ -167,16 +164,16 @@ final class TalentPortal
     private function init_hooks()
     {
         add_action( 'init', [ $this, 'init_classes' ] );
-        add_action( 'plugins_loaded', [ $this, 'applicant_submission_load_textdomain' ] );
+        add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
     }
 
     /**
      * Load the plugin text domain
      */
-    public function applicant_submission_load_textdomain()
+    public function load_textdomain()
     {
         load_plugin_textdomain(
-            TALENT_PORTAL_TEXT_DOMAIN,
+            'talent-portal',
             false,
             WP_TALENT_PORTAL_PATH . 'languages'
         );

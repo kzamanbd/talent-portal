@@ -82,13 +82,13 @@ class Assets
 
         wp_localize_script( 'talent-script', 'talentPortal', [
             'ajax_url' => admin_url( 'admin-ajax.php' ),
-            'error'    => __( 'Something went wrong', TALENT_PORTAL_TEXT_DOMAIN ),
+            'error'    => __( 'Something went wrong', 'talent-portal' ),
          ] );
 
         wp_localize_script( 'talent-admin-script', 'talentPortal', [
             'nonce'   => wp_create_nonce( 'talent-portal-admin-nonce' ),
-            'confirm' => __( 'Are you sure?', TALENT_PORTAL_TEXT_DOMAIN ),
-            'error'   => __( 'Something went wrong', TALENT_PORTAL_TEXT_DOMAIN ),
+            'confirm' => __( 'Are you sure?', 'talent-portal' ),
+            'error'   => __( 'Something went wrong', 'talent-portal' ),
          ] );
     }
 }

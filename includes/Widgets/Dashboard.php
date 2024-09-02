@@ -24,7 +24,7 @@ class Dashboard
     {
         wp_add_dashboard_widget(
             'applicant_submissions_widget',
-            __( 'Latest Applicant Submissions', TALENT_PORTAL_TEXT_DOMAIN ),
+            __( 'Latest Applicant Submissions', 'talent-portal' ),
             [ $this, 'render_applicant_submissions_widget' ]
         );
     }
@@ -41,6 +41,6 @@ class Dashboard
              ] );
             return;
         }
-        echo __( 'No applicant submissions found', TALENT_PORTAL_TEXT_DOMAIN );
+        echo __( 'No applicant submissions found', 'talent-portal' );
     }
 }

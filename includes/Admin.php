@@ -31,8 +31,8 @@ class Admin
     public function add_menu()
     {
         add_menu_page(
-            __( 'Talent Portal', TALENT_PORTAL_TEXT_DOMAIN ),
-            __( 'Talent Portal', TALENT_PORTAL_TEXT_DOMAIN ),
+            __( 'Talent Portal', 'talent-portal' ),
+            __( 'Talent Portal', 'talent-portal' ),
             'manage_options',
             'talent-portal',
             [ $this, 'render' ],
@@ -49,7 +49,7 @@ class Admin
     {
         if ( get_transient( 'applicant_submission_activation_notice' ) ) {
             $class = 'notice notice-success is-dismissible';
-            $message = __( 'Talent Portal has been activated successfully!', TALENT_PORTAL_TEXT_DOMAIN );
+            $message = __( 'Talent Portal has been activated successfully!', 'talent-portal' );
             echo "<div class='$class'><p>$message</p></div>";
             delete_transient( 'applicant_submission_activation_notice' );
         }
