@@ -81,8 +81,8 @@ class Assets
         }
 
         wp_localize_script( 'talent-script', 'talentPortal', [
-            'ajaxurl' => admin_url( 'admin-ajax.php' ),
-            'error'   => __( 'Something went wrong', 'talent-portal' ),
+            'ajax_url' => admin_url( 'admin-ajax.php' ),
+            'error'    => __( 'Something went wrong', 'talent-portal' ),
          ] );
 
         wp_localize_script( 'talent-admin-script', 'talentPortal', [

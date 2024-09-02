@@ -3,7 +3,7 @@
 namespace WpDraftScripts\TalentPortal\Shortcodes;
 
 use WpDraftScripts\TalentPortal\Abstracts\TalentShortcode;
-use WpDraftScripts\TalentPortal\Install\Installer;
+use WpDraftScripts\TalentPortal\Repositories\ApplicantRepository;
 use WpDraftScripts\TalentPortal\Traits\Helpers;
 
 /**
@@ -13,6 +13,21 @@ use WpDraftScripts\TalentPortal\Traits\Helpers;
 class ApplicantForm extends TalentShortcode
 {
     use Helpers;
+
+    /**
+     * @var ApplicantRepository
+     */
+
+    public $applicant_repository;
+
+    /**
+     * ApplicantForm constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->applicant_repository = new ApplicantRepository();
+    }
     /**
      * Get shortcode tag
      * @return string
@@ -41,15 +56,27 @@ class ApplicantForm extends TalentShortcode
      */
     public function handle_applicant_form_submission()
     {
+        if ( !wp_verify_nonce( $_REQUEST[ '_wpnonce' ], 'talent_portal_form' ) ) {
+            return 'Nonce verification failed!';
+        }
         if ( $_SERVER[ 'REQUEST_METHOD' ] === 'POST' ) {
-            global $wpdb;
-
             $first_name = sanitize_text_field( $_POST[ 'first_name' ] );
             $last_name = sanitize_text_field( $_POST[ 'last_name' ] );
             $address = sanitize_textarea_field( $_POST[ 'address' ] );
             $email = sanitize_email( $_POST[ 'email' ] );
             $mobile = sanitize_text_field( $_POST[ 'mobile' ] );
             $post_name = sanitize_text_field( $_POST[ 'post_name' ] );
+
+            if ( empty( $first_name ) || empty( $last_name ) || empty( $address ) || empty( $email ) || empty( $mobile ) || empty( $post_name ) ) {
+                return '<div class="error">All fields are required.</div>';
+            }
+
+            // check email already exists
+            $applicant = $this->applicant_repository->find_by_email( $email );
+
+            if ( $applicant ) {
+                return '<div class="error">Email already exists.</div>';
+            }
 
             // Handle file upload
             if ( !function_exists( 'wp_handle_upload' ) ) {
@@ -64,17 +91,16 @@ class ApplicantForm extends TalentShortcode
             if ( $move && !isset( $move[ 'error' ] ) ) {
                 $cv_path = str_replace( wp_get_upload_dir()[ 'baseurl' ] . '/', '', $move[ 'url' ] );
 
-                $table_name = $wpdb->prefix . Installer::TABLE_NAME;
-
-                $wpdb->insert( $table_name, array(
-                    'first_name' => $first_name,
-                    'last_name'  => $last_name,
-                    'address'    => $address,
-                    'email'      => $email,
-                    'mobile'     => $mobile,
-                    'post_name'  => $post_name,
-                    'cv_url'     => $cv_path,
-                ) );
+                $insert_id = $this->applicant_repository->insert( [
+                    'first_name'      => $first_name,
+                    'last_name'       => $last_name,
+                    'address'         => $address,
+                    'email'           => $email,
+                    'mobile'          => $mobile,
+                    'post_name'       => $post_name,
+                    'submission_date' => current_time( 'mysql' ),
+                    'cv_url'          => $cv_path,
+                 ] );
 
                 // Send notification email
                 $to = $email;
@@ -87,9 +113,7 @@ class ApplicantForm extends TalentShortcode
                     "Address: $address\n" .
                     "CV: $cv_url\n";
 
-                wp_mail( $to, $subject, $message, array( 'Content-Type: text/html; charset=UTF-8' ), [
-                    $cv_url,
-                 ] );
+                wp_mail( $to, $subject, $message );
 
                 return '<div class="success">Your application has been submitted successfully.</div>';
             } else {

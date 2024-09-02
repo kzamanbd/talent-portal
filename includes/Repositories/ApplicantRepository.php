@@ -46,6 +46,18 @@ class ApplicantRepository
         return $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $this->table_name WHERE id = %d", $id ), ARRAY_A );
     }
 
+    public function find_by_email( $email )
+    {
+        global $wpdb;
+        return $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $this->table_name WHERE email = %s", $email ), ARRAY_A );
+    }
+
+    public function update( $data, $id )
+    {
+        global $wpdb;
+        return $wpdb->update( $this->table_name, $data, [ 'id' => $id ] );
+    }
+
     public function delete( $ids )
     {
         global $wpdb;
