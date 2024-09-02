@@ -34,6 +34,10 @@ class ApplicationList extends \WP_List_Table
         $this->search_box( 'search', 'search_id' );
 
         $this->display();
+
+        wp_enqueue_style( 'talent-admin-style' );
+        wp_enqueue_script( 'talent-admin-script' );
+
     }
 
     /**

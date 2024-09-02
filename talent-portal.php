@@ -13,6 +13,7 @@
  */
 
 use WpDraftScripts\TalentPortal\Admin;
+use WpDraftScripts\TalentPortal\Ajax;
 use WpDraftScripts\TalentPortal\Assets;
 use WpDraftScripts\TalentPortal\Frontend;
 use WpDraftScripts\TalentPortal\Install\Installer;
@@ -116,13 +117,13 @@ final class TalentPortal
         define( 'WP_TALENT_PORTAL_VERSION', $this->version );
         define( 'TALENT_PORTAL_TEXT_DOMAIN', $this->text_domain );
         define( 'WP_TALENT_PORTAL_FILE', __FILE__ );
+        define( 'WP_TALENT_PORTAL_PATH', plugin_dir_path( WP_TALENT_PORTAL_FILE ) );
         define( 'WP_TALENT_PORTAL_PLUGIN_URL', plugins_url( '', WP_TALENT_PORTAL_FILE ) );
-        define( 'WP_TALENT_PORTAL_PLUGIN_PATH', plugin_dir_path( WP_TALENT_PORTAL_FILE ) );
         define( 'WP_TALENT_PORTAL_PLUGIN_BASENAME', plugin_basename( WP_TALENT_PORTAL_FILE ) );
         define( 'WP_TALENT_PORTAL_ASSETS', WP_TALENT_PORTAL_PLUGIN_URL . '/assets' );
 
         $this->plugin_url = WP_TALENT_PORTAL_PLUGIN_URL;
-        $this->plugin_path = WP_TALENT_PORTAL_PLUGIN_PATH;
+        $this->plugin_path = WP_TALENT_PORTAL_PATH;
         $this->plugin_base_name = WP_TALENT_PORTAL_PLUGIN_BASENAME;
 
         $this->init_hooks();
@@ -173,6 +174,9 @@ final class TalentPortal
      */
     public function init_classes()
     {
+        if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+            Ajax::instance();
+        }
 
         if ( is_admin() ) {
             Admin::instance();

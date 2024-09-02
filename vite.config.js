@@ -4,7 +4,14 @@ export default defineConfig({
     build: {
         outDir: 'assets/build',
         rollupOptions: {
-            input: ['assets/app.js', 'assets/app.css'],
+            input: [
+                // scripts
+                'assets/scripts/admin.js',
+                'assets/scripts/frontend.js',
+                // styles
+                'assets/styles/admin.css',
+                'assets/styles/frontend.css'
+            ],
             output: {
                 assetFileNames: (chunkInfo) => {
                     let outDir = '';

@@ -28,6 +28,8 @@ class ApplicantForm extends TalentShortcode
      */
     public function render( $attrs, $content = '' )
     {
+        wp_enqueue_style( 'talent-style' );
+        wp_enqueue_script( 'talent-script' );
         ob_start();
         $this->view( 'applicant-form' );
         return ob_get_clean();
