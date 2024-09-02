@@ -4,6 +4,7 @@ namespace WpDraftScripts\TalentPortal\Shortcodes;
 
 use WpDraftScripts\TalentPortal\Abstracts\TalentShortcode;
 use WpDraftScripts\TalentPortal\Install\Installer;
+use WpDraftScripts\TalentPortal\Traits\Helpers;
 
 /**
  * Class ApplicantForm
@@ -11,7 +12,7 @@ use WpDraftScripts\TalentPortal\Install\Installer;
  */
 class ApplicantForm extends TalentShortcode
 {
-
+    use Helpers;
     /**
      * Get shortcode tag
      * @return string
@@ -28,7 +29,7 @@ class ApplicantForm extends TalentShortcode
     public function render( $attrs, $content = '' )
     {
         ob_start();
-        require_once WP_TALENT_PORTAL_PLUGIN_PATH . 'templates/applicant-form.php';
+        $this->view( 'applicant-form' );
         return ob_get_clean();
     }
 
