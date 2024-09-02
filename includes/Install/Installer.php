@@ -1,10 +1,10 @@
 <?php
 
-namespace WpDraftScripts\TalentPortal\Install;
+namespace TalentPortal\Install;
 
 /**
  * Class Installer
- * @package WpDraftScripts\TalentPortal
+ * @package TalentPortal
  */
 
 class Installer

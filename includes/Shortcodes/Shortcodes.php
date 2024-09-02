@@ -1,12 +1,12 @@
 <?php
 
-namespace WpDraftScripts\TalentPortal\Shortcodes;
+namespace TalentPortal\Shortcodes;
 
-use WpDraftScripts\TalentPortal\Traits\Singleton;
+use TalentPortal\Traits\Singleton;
 
 /**
  * Class Shortcodes
- * @package WpDraftScripts\TalentPortal\Shortcodes
+ * @package TalentPortal\Shortcodes
  */
 class Shortcodes
 {

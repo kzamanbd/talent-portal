@@ -14,6 +14,6 @@
     <?php }?>
 
     <form  method="post">
-        <?php \WpDraftScripts\TalentPortal\Admin\ApplicationList::instance();?>
+        <?php \TalentPortal\Admin\ApplicationList::instance();?>
     </form>
 </div>

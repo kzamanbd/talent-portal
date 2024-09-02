@@ -1,10 +1,10 @@
 <?php
 
-namespace WpDraftScripts\TalentPortal\Abstracts;
+namespace TalentPortal\Abstracts;
 
 /**
  * Class TalentShortcode
- * @package WpDraftScripts\TalentPortal
+ * @package TalentPortal
  */
 
 abstract class TalentShortcode

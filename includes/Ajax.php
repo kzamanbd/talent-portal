@@ -1,10 +1,10 @@
 <?php
 
-namespace WpDraftScripts\TalentPortal;
+namespace TalentPortal;
 
-use WpDraftScripts\TalentPortal\Install\Installer;
-use WpDraftScripts\TalentPortal\Shortcodes\ApplicantForm;
-use WpDraftScripts\TalentPortal\Traits\Singleton;
+use TalentPortal\Install\Installer;
+use TalentPortal\Shortcodes\ApplicantForm;
+use TalentPortal\Traits\Singleton;
 
 /**
  * Ajax handler class

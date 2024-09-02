@@ -1,8 +1,8 @@
 <?php
 
-namespace WpDraftScripts\TalentPortal\Repositories;
+namespace TalentPortal\Repositories;
 
-use WpDraftScripts\TalentPortal\Install\Installer;
+use TalentPortal\Install\Installer;
 
 class ApplicantRepository
 {

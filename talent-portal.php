@@ -12,13 +12,13 @@
  * Text Domain: talent-portal
  */
 
-use WpDraftScripts\TalentPortal\Admin;
-use WpDraftScripts\TalentPortal\Ajax;
-use WpDraftScripts\TalentPortal\Assets;
-use WpDraftScripts\TalentPortal\Frontend;
-use WpDraftScripts\TalentPortal\Install\Installer;
-use WpDraftScripts\TalentPortal\Shortcodes\Shortcodes;
-use WpDraftScripts\TalentPortal\Widgets\Dashboard;
+use TalentPortal\Admin;
+use TalentPortal\Ajax;
+use TalentPortal\Assets;
+use TalentPortal\Frontend;
+use TalentPortal\Install\Installer;
+use TalentPortal\Shortcodes\Shortcodes;
+use TalentPortal\Widgets\Dashboard;
 
 if ( !defined( 'ABSPATH' ) ) {
     die( 'You are not allowed to access this file.' );

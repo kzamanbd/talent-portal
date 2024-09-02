@@ -1,14 +1,14 @@
 <?php
 
-namespace WpDraftScripts\TalentPortal\Shortcodes;
+namespace TalentPortal\Shortcodes;
 
-use WpDraftScripts\TalentPortal\Abstracts\TalentShortcode;
-use WpDraftScripts\TalentPortal\Repositories\ApplicantRepository;
-use WpDraftScripts\TalentPortal\Traits\Helpers;
+use TalentPortal\Abstracts\TalentShortcode;
+use TalentPortal\Repositories\ApplicantRepository;
+use TalentPortal\Traits\Helpers;
 
 /**
  * Class ApplicantForm
- * @package WpDraftScripts\TalentPortal\Shortcodes
+ * @package TalentPortal\Shortcodes
  */
 class ApplicantForm extends TalentShortcode
 {

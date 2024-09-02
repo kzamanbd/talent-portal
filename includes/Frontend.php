@@ -1,12 +1,12 @@
 <?php
 
-namespace WpDraftScripts\TalentPortal;
+namespace TalentPortal;
 
-use WpDraftScripts\TalentPortal\Traits\Singleton;
+use TalentPortal\Traits\Singleton;
 
 /**
  * Class Frontend
- * @package WpDraftScripts\TalentPortal
+ * @package TalentPortal
  */
 
 class Frontend

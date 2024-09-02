@@ -1,6 +1,6 @@
 <?php
 
-namespace WpDraftScripts\TalentPortal\Traits;
+namespace TalentPortal\Traits;
 
 /**
  * Singleton Trait

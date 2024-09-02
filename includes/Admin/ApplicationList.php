@@ -1,9 +1,9 @@
 <?php
 
-namespace WpDraftScripts\TalentPortal\Admin;
+namespace TalentPortal\Admin;
 
-use WpDraftScripts\TalentPortal\Repositories\ApplicantRepository;
-use WpDraftScripts\TalentPortal\Traits\Singleton;
+use TalentPortal\Repositories\ApplicantRepository;
+use TalentPortal\Traits\Singleton;
 
 if ( !class_exists( 'WP_List_Table' ) ) {
     require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
@@ -11,7 +11,7 @@ if ( !class_exists( 'WP_List_Table' ) ) {
 
 /**
  * Class ApplicationList
- * @package WpDraftScripts\TalentPortal
+ * @package TalentPortal
  */
 
 class ApplicationList extends \WP_List_Table

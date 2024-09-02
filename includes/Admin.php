@@ -1,13 +1,13 @@
 <?php
 
-namespace WpDraftScripts\TalentPortal;
+namespace TalentPortal;
 
-use WpDraftScripts\TalentPortal\Traits\Helpers;
-use WpDraftScripts\TalentPortal\Traits\Singleton;
+use TalentPortal\Traits\Helpers;
+use TalentPortal\Traits\Singleton;
 
 /**
  * Class Admin
- * @package WpDraftScripts\TalentPortal
+ * @package TalentPortal
  */
 
 class Admin

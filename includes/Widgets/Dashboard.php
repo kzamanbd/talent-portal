@@ -1,10 +1,10 @@
 <?php
 
-namespace WpDraftScripts\TalentPortal\Widgets;
+namespace TalentPortal\Widgets;
 
-use WpDraftScripts\TalentPortal\Install\Installer;
-use WpDraftScripts\TalentPortal\Traits\Helpers;
-use WpDraftScripts\TalentPortal\Traits\Singleton;
+use TalentPortal\Install\Installer;
+use TalentPortal\Traits\Helpers;
+use TalentPortal\Traits\Singleton;
 
 /**
  * Dashboard Widgets

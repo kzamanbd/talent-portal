@@ -1,10 +1,10 @@
 <?php
 
-namespace WpDraftScripts\TalentPortal;
+namespace TalentPortal;
 
 /**
  * Class Assets
- * @package WpDraftScripts\TalentPortal
+ * @package TalentPortal
  */
 class Assets
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace WpDraftScripts\TalentPortal\Admin;
+namespace TalentPortal\Admin;
 
 /**
  * Class Hooks
- * @package WpDraftScripts\TalentPortal
+ * @package TalentPortal
  */
 
 class Hooks
