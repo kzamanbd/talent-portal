@@ -4,7 +4,7 @@ import form from '@tailwindcss/forms';
 
 export default {
     important: true,
-    content: ['./assets/**/*.{js,ts,vue,jsx,tsx}', './includes/**/*.{php,html}', './templates/**/*.{php,html}'],
+    content: ['./assets/**/*.{js,ts,vue,jsx,tsx}', './includes/**/*.{php,html}', './views/**/*.{php,html}'],
     theme: {
         extend: {}
     },
