@@ -6,11 +6,11 @@ export default defineConfig({
         rollupOptions: {
             input: [
                 // scripts
-                'assets/scripts/admin.js',
-                'assets/scripts/frontend.js',
+                'assets/js/admin.js',
+                'assets/js/frontend.js',
                 // styles
-                'assets/styles/admin.css',
-                'assets/styles/frontend.css'
+                'assets/css/admin.css',
+                'assets/css/frontend.css'
             ],
             output: {
                 assetFileNames: (chunkInfo) => {
