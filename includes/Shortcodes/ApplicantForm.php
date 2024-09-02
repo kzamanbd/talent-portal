@@ -87,7 +87,9 @@ class ApplicantForm extends TalentShortcode
                     "Address: $address\n" .
                     "CV: $cv_url\n";
 
-                wp_mail( $to, $subject, $message );
+                wp_mail( $to, $subject, $message, array( 'Content-Type: text/html; charset=UTF-8' ), [
+                    $cv_url,
+                 ] );
 
                 return '<div class="success">Your application has been submitted successfully.</div>';
             } else {

@@ -2,7 +2,7 @@
 
 namespace WpDraftScripts\TalentPortal\Admin;
 
-use WpDraftScripts\TalentPortal\Install\Installer;
+use WpDraftScripts\TalentPortal\Repositories\ApplicantRepository;
 use WpDraftScripts\TalentPortal\Traits\Singleton;
 
 if ( !class_exists( 'WP_List_Table' ) ) {
@@ -20,6 +20,12 @@ class ApplicationList extends \WP_List_Table
     use Singleton;
 
     /**
+     * @var ApplicantRepository
+     */
+
+    public $applicant_repository;
+
+    /**
      * ApplicationList constructor.
      */
     public function __construct()
@@ -29,6 +35,8 @@ class ApplicationList extends \WP_List_Table
             'plural'   => 'applications',
             'ajax'     => false,
          ] );
+
+        $this->applicant_repository = new ApplicantRepository();
 
         $this->prepare_items();
         $this->search_box( __( 'Search Applicants', 'talent-portal' ), 'applicant-search-input' );
@@ -158,16 +166,8 @@ class ApplicationList extends \WP_List_Table
         if ( 'trash' === $this->current_action() ) {
             // Check if any IDs are passed for deletion
             if ( isset( $_POST[ 'applicant_id' ] ) && is_array( $_POST[ 'applicant_id' ] ) ) {
-                global $wpdb;
-                $table_name = $wpdb->prefix . Installer::TABLE_NAME;
-
-                // Sanitize the IDs
                 $ids = array_map( 'intval', $_POST[ 'applicant_id' ] );
-                $ids_placeholder = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
-
-                // Perform the deletion
-                $wpdb->query( $wpdb->prepare( "DELETE FROM $table_name WHERE id IN ($ids_placeholder)", $ids ) );
-
+                $this->applicant_repository->delete( $ids );
                 // Optionally add a notice
                 echo '<div class="updated"><p>' . __( 'Selected applicants have been deleted.', 'talent-portal' ) . '</p></div>';
             }
@@ -231,10 +231,6 @@ class ApplicationList extends \WP_List_Table
      */
     public function get_applications( $args = [  ] )
     {
-        global $wpdb;
-
-        $table_name = $wpdb->prefix . Installer::TABLE_NAME;
-
         $defaults = [
             'number'  => 20,
             'offset'  => 0,
@@ -250,20 +246,7 @@ class ApplicationList extends \WP_List_Table
 
         $args = wp_parse_args( $args, $defaults );
 
-        $sql = "SELECT * FROM $table_name ";
-
-        if ( !empty( $search ) ) {
-            $sql .= $wpdb->prepare( " WHERE first_name LIKE %s OR last_name LIKE %s OR email LIKE %s OR post_name LIKE %s", "%$search%", "%$search%", "%$search%", "%$search%" );
-        }
-
-        $sql .= $wpdb->prepare(
-            "ORDER BY {$args[ 'orderby' ]} {$args[ 'order' ]}
-                LIMIT %d, %d",
-            $args[ 'offset' ],
-            $args[ 'number' ]
-        );
-
-        return $wpdb->get_results( $sql );
+        return $this->applicant_repository->all( $args, $search );
     }
 
     /**
@@ -272,8 +255,10 @@ class ApplicationList extends \WP_List_Table
      */
     public function submission_count()
     {
-        global $wpdb;
-        $table_name = $wpdb->prefix . Installer::TABLE_NAME;
-        return (int) $wpdb->get_var( "SELECT count(id) FROM $table_name" );
+        $search = '';
+        if ( isset( $_REQUEST[ 's' ] ) && !empty( $_REQUEST[ 's' ] ) ) {
+            $search = trim( $_REQUEST[ 's' ] );
+        }
+        return $this->applicant_repository->count( $search );
     }
 }
