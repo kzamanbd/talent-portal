@@ -23,20 +23,20 @@ class ApplicationList extends \WP_List_Table
      * @var ApplicantRepository
      */
 
-    public $applicant_repository;
+    public ApplicantRepository $applicant_repository;
 
     /**
      * ApplicationList constructor.
      */
     public function __construct()
     {
+        $this->applicant_repository = new ApplicantRepository();
+
         parent::__construct( [
             'singular' => 'application',
             'plural'   => 'applications',
             'ajax'     => false,
          ] );
-
-        $this->applicant_repository = new ApplicantRepository();
 
         $this->prepare_items();
         $this->search_box( __( 'Search Applicants', 'talent-portal' ), 'applicant-search-input' );
@@ -112,8 +112,6 @@ class ApplicationList extends \WP_List_Table
     public function column_default( $item, $column_name )
     {
         switch ( $column_name ) {
-            case 'name':
-                return $item->first_name . ' ' . $item->last_name;
             case 'submission_date':
                 return wp_date( get_option( 'date_format' ), strtotime( $item->submission_date ) );
             case 'cv':
@@ -190,7 +188,7 @@ class ApplicationList extends \WP_List_Table
         return sprintf(
             '<a href="%1$s"><strong>%2$s</strong></a> %3$s',
             admin_url( 'admin.php?page=talent-portal&action=view&id' . $item->id ),
-            $item->first_name,
+            $item->first_name . ' ' . $item->last_name,
             $this->row_actions( $actions )
         );
     }
@@ -234,8 +232,8 @@ class ApplicationList extends \WP_List_Table
         $defaults = [
             'number'  => 20,
             'offset'  => 0,
-            'orderby' => 'id',
-            'order'   => 'ASC',
+            'orderby' => 'submission_date',
+            'order'   => 'DESC',
          ];
 
         // Handle search
