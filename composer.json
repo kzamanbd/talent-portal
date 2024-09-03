@@ -26,5 +26,16 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
         }
+    },
+    "scripts": {
+        "phpcs": [
+            "vendor/bin/phpcs -p -s"
+        ],
+        "phpcs:report": [
+            "vendor/bin/phpcs --report-file='phpcs-report.txt'"
+        ],
+        "phpcbf": [
+            "vendor/bin/phpcbf -p"
+        ]
     }
 }
