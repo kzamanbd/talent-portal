@@ -1,0 +1,155 @@
+# Copyright (C) 2024 Kamruzzaman
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Talent Portal 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/talent-portal\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-09-03T06:51:32+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: talent-portal\n"
+
+#. Plugin Name of the plugin
+#: talent-portal.php
+#: includes/Admin.php:34
+#: includes/Admin.php:35
+msgid "Talent Portal"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: talent-portal.php
+msgid "https://draftscripts.com/wp-plugin/talent-portal"
+msgstr ""
+
+#. Description of the plugin
+#: talent-portal.php
+msgid "This is a simple plugin for managing job applicants. It allows you to create job listings and accept applications from candidates."
+msgstr ""
+
+#. Author of the plugin
+#: talent-portal.php
+msgid "Kamruzzaman"
+msgstr ""
+
+#. Author URI of the plugin
+#: talent-portal.php
+msgid "https://draftscripts.com/wp-plugin"
+msgstr ""
+
+#: includes/Admin.php:52
+msgid "Talent Portal has been activated successfully!"
+msgstr ""
+
+#: includes/Admin/ApplicationList.php:42
+msgid "Search Applicants"
+msgstr ""
+
+#: includes/Admin/ApplicationList.php:57
+msgid "No application found"
+msgstr ""
+
+#: includes/Admin/ApplicationList.php:102
+msgid "Name"
+msgstr ""
+
+#: includes/Admin/ApplicationList.php:103
+msgid "Email"
+msgstr ""
+
+#: includes/Admin/ApplicationList.php:104
+msgid "Mobile"
+msgstr ""
+
+#: includes/Admin/ApplicationList.php:105
+msgid "Post Name"
+msgstr ""
+
+#: includes/Admin/ApplicationList.php:106
+msgid "Submission Date"
+msgstr ""
+
+#: includes/Admin/ApplicationList.php:107
+msgid "CV"
+msgstr ""
+
+#: includes/Admin/ApplicationList.php:120
+msgid "View CV"
+msgstr ""
+
+#: includes/Admin/ApplicationList.php:154
+msgid "Move to Trash"
+msgstr ""
+
+#: includes/Admin/ApplicationList.php:172
+msgid "Selected applicants have been deleted."
+msgstr ""
+
+#: includes/Admin/ApplicationList.php:188
+msgid "Trash"
+msgstr ""
+
+#: includes/Assets.php:85
+#: includes/Assets.php:91
+msgid "Something went wrong"
+msgstr ""
+
+#: includes/Assets.php:90
+msgid "Are you sure?"
+msgstr ""
+
+#: includes/Shortcodes/ApplicantForm.php:61
+msgid "Request verification failed!"
+msgstr ""
+
+#: includes/Shortcodes/ApplicantForm.php:76
+msgid "All fields are required!"
+msgstr ""
+
+#: includes/Shortcodes/ApplicantForm.php:84
+msgid "Invalid email address!"
+msgstr ""
+
+#: includes/Shortcodes/ApplicantForm.php:94
+msgid "You have already applied for this post!"
+msgstr ""
+
+#: includes/Shortcodes/ApplicantForm.php:136
+msgid "Application submitted successfully!"
+msgstr ""
+
+#: includes/Shortcodes/ApplicantForm.php:156
+msgid "Nonce verification failed!"
+msgstr ""
+
+#: includes/Shortcodes/ApplicantForm.php:163
+msgid "No permission!"
+msgstr ""
+
+#: includes/Shortcodes/ApplicantForm.php:172
+msgid "Invalid application ID!"
+msgstr ""
+
+#: includes/Shortcodes/ApplicantForm.php:180
+msgid "Application deleted successfully!"
+msgstr ""
+
+#: includes/Widgets/Dashboard.php:27
+msgid "Latest Applicant Submissions"
+msgstr ""
+
+#: includes/Widgets/Dashboard.php:44
+msgid "No applicant submissions found"
+msgstr ""
+
+#: views/applicant-view.php:2
+msgid "Application Submission List"
+msgstr ""
+
+#: views/applicant-view.php:6
+msgid "Talent has been deleted successfully!"
+msgstr ""

@@ -1,0 +1,151 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Talent Portal 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/talent-portal\n"
+"POT-Creation-Date: 2024-09-03T06:51:32+00:00\n"
+"PO-Revision-Date: 2024-09-03 20:21+0600\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: bn_BD\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.5\n"
+"X-Domain: talent-portal\n"
+
+#. Plugin Name of the plugin
+#: talent-portal.php includes/Admin.php:34 includes/Admin.php:35
+msgid "Talent Portal"
+msgstr "ট্যালেন্ট পোর্টাল"
+
+#. Plugin URI of the plugin
+#: talent-portal.php
+msgid "https://draftscripts.com/wp-plugin/talent-portal"
+msgstr "https://draftscripts.com/wp-plugin/talent-portal"
+
+#. Description of the plugin
+#: talent-portal.php
+msgid "This is a simple plugin for managing job applicants. It allows you to create job listings and accept applications from candidates."
+msgstr "এটি চাকরির আবেদনকারীদের পরিচালনার জন্য একটি সহজ প্লাগইন, এটি আপনাকে চাকরির তালিকা তৈরি করতে এবং প্রার্থীদের কাছ থেকে আবেদন গ্রহণ করতে দেয়."
+
+#. Author of the plugin
+#: talent-portal.php
+msgid "Kamruzzaman"
+msgstr "কামরুজ্জামান"
+
+#. Author URI of the plugin
+#: talent-portal.php
+msgid "https://draftscripts.com/wp-plugin"
+msgstr "https://draftscripts.com/wp-plugin"
+
+#: includes/Admin.php:52
+msgid "Talent Portal has been activated successfully!"
+msgstr "ট্যালেন্ট পোর্টাল সফলভাবে সক্রিয় করা হয়েছে!"
+
+#: includes/Admin/ApplicationList.php:42
+msgid "Search Applicants"
+msgstr "আবেদনকারীদের অনুসন্ধান করুন"
+
+#: includes/Admin/ApplicationList.php:57
+msgid "No application found"
+msgstr "কোন আবেদন পাওয়া যায়নি"
+
+#: includes/Admin/ApplicationList.php:102
+msgid "Name"
+msgstr "নাম"
+
+#: includes/Admin/ApplicationList.php:103
+msgid "Email"
+msgstr "ইমেইল"
+
+#: includes/Admin/ApplicationList.php:104
+msgid "Mobile"
+msgstr "মোবাইল"
+
+#: includes/Admin/ApplicationList.php:105
+msgid "Post Name"
+msgstr "পোস্টের নাম"
+
+#: includes/Admin/ApplicationList.php:106
+msgid "Submission Date"
+msgstr "জমা দেওয়ার তারিখ"
+
+#: includes/Admin/ApplicationList.php:107
+msgid "CV"
+msgstr "সিভি"
+
+#: includes/Admin/ApplicationList.php:120
+msgid "View CV"
+msgstr "সিভি দেখুন"
+
+#: includes/Admin/ApplicationList.php:154
+msgid "Move to Trash"
+msgstr "ট্র্যাশে সরান"
+
+#: includes/Admin/ApplicationList.php:172
+msgid "Selected applicants have been deleted."
+msgstr "নির্বাচিত আবেদনকারীদের মুছে ফেলা হয়েছে."
+
+#: includes/Admin/ApplicationList.php:188
+msgid "Trash"
+msgstr "মুছে ফেলুন"
+
+#: includes/Assets.php:85 includes/Assets.php:91
+msgid "Something went wrong"
+msgstr "কিছু ভুল হয়েছে"
+
+#: includes/Assets.php:90
+msgid "Are you sure?"
+msgstr "আপনি কি নিশ্চিত?"
+
+#: includes/Shortcodes/ApplicantForm.php:61
+msgid "Request verification failed!"
+msgstr "যাচাইকরণের অনুরোধ ব্যর্থ হয়েছে!"
+
+#: includes/Shortcodes/ApplicantForm.php:76
+msgid "All fields are required!"
+msgstr "সমস্ত ক্ষেত্র প্রয়োজনীয়!"
+
+#: includes/Shortcodes/ApplicantForm.php:84
+msgid "Invalid email address!"
+msgstr "অবৈধ ইমেল ঠিকানা!"
+
+#: includes/Shortcodes/ApplicantForm.php:94
+msgid "You have already applied for this post!"
+msgstr "আপনি ইতিমধ্যে এই পোস্টের জন্য আবেদন করেছেন!"
+
+#: includes/Shortcodes/ApplicantForm.php:136
+msgid "Application submitted successfully!"
+msgstr "আবেদন সফলভাবে জমা!"
+
+#: includes/Shortcodes/ApplicantForm.php:156
+msgid "Nonce verification failed!"
+msgstr "ননস ভেরিফিকেশন ব্যর্থ!"
+
+#: includes/Shortcodes/ApplicantForm.php:163
+msgid "No permission!"
+msgstr "অনুমতি নেই!"
+
+#: includes/Shortcodes/ApplicantForm.php:172
+msgid "Invalid application ID!"
+msgstr "অবৈধ অ্যাপ্লিকেশন আইডি!"
+
+#: includes/Shortcodes/ApplicantForm.php:180
+msgid "Application deleted successfully!"
+msgstr "অ্যাপ্লিকেশন সফলভাবে মুছে ফেলা হয়েছে!"
+
+#: includes/Widgets/Dashboard.php:27
+msgid "Latest Applicant Submissions"
+msgstr "সর্বশেষ আবেদনকারী জমা"
+
+#: includes/Widgets/Dashboard.php:44
+msgid "No applicant submissions found"
+msgstr "কোন আবেদনকারী জমা পাওয়া যায়নি"
+
+#: views/applicant-view.php:2
+msgid "Application Submission List"
+msgstr "আবেদন জমার তালিকা"
+
+#: views/applicant-view.php:6
+msgid "Talent has been deleted successfully!"
+msgstr "আবেদন সফলভাবে মুছে ফেলা হয়েছে!"

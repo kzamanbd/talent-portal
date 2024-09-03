@@ -54,7 +54,7 @@ class ApplicationList extends \WP_List_Table
      */
     public function no_items()
     {
-        _e( 'No talent found', 'talent-portal' );
+        _e( 'No application found', 'talent-portal' );
     }
 
     /**
