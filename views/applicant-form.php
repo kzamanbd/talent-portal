@@ -7,8 +7,8 @@
     </div>
 
     <div class="form-group">
-        <label for="last_name">Last Name: <span>*</span></label>
-        <input type="text" id="last_name" name="last_name" class="talent__form-control" required />
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" class="talent__form-control" />
     </div>
 
     <div class="form-group">

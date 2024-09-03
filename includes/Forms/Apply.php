@@ -43,11 +43,11 @@ class Apply
             $first_name = sanitize_text_field( $_POST[ 'first_name' ] );
             $last_name = sanitize_text_field( $_POST[ 'last_name' ] );
             $address = sanitize_textarea_field( $_POST[ 'address' ] );
-            $email = sanitize_email( $_POST[ 'email' ] );
+            $email = sanitize_textarea_field( $_POST[ 'email' ] );
             $mobile = sanitize_text_field( $_POST[ 'mobile' ] );
             $post_name = sanitize_text_field( $_POST[ 'post_name' ] );
 
-            if ( empty( $first_name ) || empty( $last_name ) || empty( $address ) || empty( $email ) || empty( $mobile ) || empty( $post_name ) ) {
+            if ( empty( $first_name ) || empty( $address ) || empty( $email ) || empty( $mobile ) || empty( $post_name ) ) {
                 wp_send_json_error( [
                     'message' => __( 'All fields are required!', 'talent-portal' ),
                  ] );
@@ -58,6 +58,14 @@ class Apply
             if ( !is_email( $email ) ) {
                 wp_send_json_error( [
                     'message' => __( 'Invalid email address!', 'talent-portal' ),
+                 ] );
+                return;
+            }
+
+            // validate mobile number
+            if ( !preg_match( '/^(?:\+88|88)?(01[3-9]\d{8})$/', $mobile ) ) {
+                wp_send_json_error( [
+                    'message' => __( 'Invalid mobile number!', 'talent-portal' ),
                  ] );
                 return;
             }
