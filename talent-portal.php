@@ -7,9 +7,11 @@
  * Version: 1.0.0
  * Author: Kamruzzaman
  * Author URI: https://draftscripts.com/wp-plugin
+ * Requires PHP: 7.4
  * License: GPL v2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: talent-portal
+ * Domain Path: /languages
  */
 
 use TalentPortal\Admin;
@@ -27,6 +29,12 @@ if ( !defined( 'ABSPATH' ) ) {
 if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
     require_once dirname( __FILE__ ) . '/vendor/autoload.php';
 }
+
+/**
+ * Class TalentPortal
+ * Main plugin class
+ * @package TalentPortal
+ */
 
 final class TalentPortal
 {
@@ -164,18 +172,17 @@ final class TalentPortal
     private function init_hooks()
     {
         add_action( 'init', [ $this, 'init_classes' ] );
-        add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
     }
 
     /**
      * Load the plugin text domain
      */
-    public function load_textdomain()
+    public function setup_localization()
     {
         load_plugin_textdomain(
             'talent-portal',
             false,
-            WP_TALENT_PORTAL_PATH . 'languages'
+            WP_TALENT_PORTAL_FILE . '/languages/'
         );
     }
 
@@ -184,6 +191,7 @@ final class TalentPortal
      */
     public function init_classes()
     {
+        $this->setup_localization();
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             Ajax::instance();
         }
