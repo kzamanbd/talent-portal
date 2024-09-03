@@ -38,7 +38,7 @@
 
     <div class="form-group">
         <label for="cv">CV: <span>*</span></label>
-        <input type="file" id="cv" name="cv" class="talent__form-control">
+        <input type="file" id="cv" name="cv" class="talent__form-control" accept="application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
     </div>
 
     <?php wp_nonce_field( 'talent_portal_apply' );?>

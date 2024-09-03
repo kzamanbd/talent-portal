@@ -2,7 +2,8 @@
 
 namespace TalentPortal;
 
-use TalentPortal\Shortcodes\ApplicantForm;
+use TalentPortal\Admin\Actions\Applicant;
+use TalentPortal\Forms\Apply;
 use TalentPortal\Traits\Singleton;
 
 /**
@@ -11,14 +12,17 @@ use TalentPortal\Traits\Singleton;
 class Ajax
 {
     use Singleton;
+
     /**
      * Class constructor
      */
     function __construct()
     {
-        $form = new ApplicantForm();
-        add_action( 'wp_ajax_talent-portal-delete', [ $form, 'delete_application' ] );
-        add_action( 'wp_ajax_talent_portal_apply', [ $form, 'handle_applicant_form_submission' ] );
-        add_action( 'wp_ajax_nopriv_talent_portal_apply', [ $form, 'handle_applicant_form_submission' ] );
+        $apply = new Apply();
+        $applicant = new Applicant();
+
+        add_action( 'wp_ajax_talent-portal-delete', [ $applicant, 'delete_application' ] );
+        add_action( 'wp_ajax_talent_portal_apply', [ $apply, 'handle_applicant_form_submission' ] );
+        add_action( 'wp_ajax_nopriv_talent_portal_apply', [ $apply, 'handle_applicant_form_submission' ] );
     }
 }

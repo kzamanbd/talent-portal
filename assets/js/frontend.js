@@ -19,7 +19,7 @@ console.log('Hello from frontend', talentPortal);
                 var messageContainer = $('#form_message');
                 if (response.success) {
                     messageContainer.html('<div class="success">' + response.data.message + '</div>');
-                    // $('#applicant_form')[0].reset(); // Reset the form after successful submission
+                    $('#applicant_form')[0].reset(); // Reset the form after successful submission
                 } else {
                     messageContainer.html('<div class="error">' + response.data.message + '</div>');
                 }
