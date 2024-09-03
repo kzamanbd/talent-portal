@@ -11,6 +11,18 @@ if ( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
     exit;
 }
 
-// Clear Database stored data
+class TalentPortalUninstall
+{
+    public function __construct()
+    {
+        $this->deleteApplicants();
+    }
 
-( new ApplicantRepository() )->uninstaller();
+    public function deleteApplicants()
+    {
+        // Clear Database stored data
+        ( new ApplicantRepository() )->cleanup();
+    }
+}
+
+new TalentPortalUninstall();

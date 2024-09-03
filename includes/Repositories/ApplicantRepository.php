@@ -158,7 +158,7 @@ class ApplicantRepository
         return $wpdb->get_results( "SELECT * FROM $this->table_name ORDER BY submission_date DESC LIMIT $limit" );
     }
 
-    public function uninstaller()
+    public function cleanup()
     {
         global $wpdb;
         // if cv_path is not empty, delete the file
