@@ -172,6 +172,7 @@ final class TalentPortal
     private function init_hooks()
     {
         add_action( 'init', [ $this, 'init_classes' ] );
+        add_action( 'plugins_loaded', [ $this, 'setup_localization' ] );
     }
 
     /**
@@ -191,7 +192,7 @@ final class TalentPortal
      */
     public function init_classes()
     {
-        $this->setup_localization();
+
         if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
             Ajax::instance();
         }
