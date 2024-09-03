@@ -4,22 +4,47 @@ namespace TalentPortal\Repositories;
 
 use TalentPortal\Install\Installer;
 
+/**
+ * Class ApplicantRepository
+ * @package TalentPortal\Repositories
+ */
 class ApplicantRepository
 {
+    /**
+     * @var string
+     * Table name
+     */
     private $table_name;
 
+    /**
+     * ApplicantRepository constructor.
+     */
     public function __construct()
     {
         global $wpdb;
         $this->table_name = $wpdb->prefix . Installer::TABLE_NAME;
     }
 
+    /**
+     * Insert data into the table
+     *
+     * @param $data array
+     * @return int
+     */
     public function insert( $data )
     {
         global $wpdb;
         $wpdb->insert( $this->table_name, $data );
         return $wpdb->insert_id;
     }
+
+    /**
+     * Get all applicants
+     *
+     * @param array $args
+     * @param string $search
+     * @return array
+     */
 
     public function all( $args = [  ], $search = '' )
     {
@@ -40,11 +65,25 @@ class ApplicantRepository
         return $wpdb->get_results( $sql );
     }
 
+    /**
+     * Get applicant by ID
+     *
+     * @param $id
+     * @return array
+     */
+
     public function get_by_id( $id )
     {
         global $wpdb;
         return $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $this->table_name WHERE id = %d", $id ), ARRAY_A );
     }
+
+    /**
+     * Find applicant by email
+     *
+     * @param $email
+     * @return array
+     */
 
     public function find_by_email( $email )
     {
@@ -52,12 +91,26 @@ class ApplicantRepository
         return $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $this->table_name WHERE email = %s", $email ), ARRAY_A );
     }
 
+    /**
+     * Update applicant
+     *
+     * @param $data
+     * @param $id
+     * @return int
+     */
+
     public function update( $data, $id )
     {
         global $wpdb;
         return $wpdb->update( $this->table_name, $data, [ 'id' => $id ] );
     }
 
+    /**
+     * Delete applicant
+     *
+     * @param $ids
+     * @return false|int
+     */
     public function delete( $ids )
     {
         try {
