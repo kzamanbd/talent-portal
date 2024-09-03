@@ -6,7 +6,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite build --watch",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "makepot": "wp i18n make-pot . languages/talent-portal.pot"
     },
     "devDependencies": {
         "@wordpress/prettier-config": "^4.6.0",
