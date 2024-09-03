@@ -119,14 +119,25 @@ class ApplicantRepository
             // if $cv_path is not empty, delete the file
             $applicants = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM $this->table_name WHERE id IN ($ids_placeholder)", $ids ) );
             foreach ( $applicants as $applicant ) {
-                if ( !empty( $applicant[ 'cv_path' ] ) ) {
-                    unlink( wp_get_upload_dir()[ 'basedir' ] . '/' . $applicant[ 'cv_path' ] );
+                if ( !empty( $applicant->cv_path ) ) {
+                    unlink( wp_get_upload_dir()[ 'basedir' ] . '/' . $applicant->cv_path );
                 }
             }
             return $wpdb->query( $wpdb->prepare( "DELETE FROM $this->table_name WHERE id IN ($ids_placeholder)", $ids ) );
         } catch ( \Exception $e ) {
-            return false;
+            return -1;
         }
+    }
+
+    public function delete_by_id( $id )
+    {
+        global $wpdb;
+        // if cv_path is not empty, delete the file
+        $applicant = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $this->table_name WHERE id = %d", $id ) );
+        if ( !empty( $applicant->cv_path ) ) {
+            unlink( wp_get_upload_dir()[ 'basedir' ] . '/' . $applicant->cv_path );
+        }
+        return $wpdb->delete( $this->table_name, [ 'id' => $id ] );
     }
 
     public function count( $search = '' )

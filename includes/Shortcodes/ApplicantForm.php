@@ -174,7 +174,14 @@ class ApplicantForm extends TalentShortcode
             return;
         }
 
-        $this->applicant_repository->delete( $id );
+        $result = $this->applicant_repository->delete_by_id( $id );
+
+        if ( $result === -1 ) {
+            wp_send_json_error( [
+                'message' => __( 'Error deleting application!', 'talent-portal' ),
+             ] );
+            return;
+        }
 
         wp_send_json_success( [
             'message' => __( 'Application deleted successfully!', 'talent-portal' ),
