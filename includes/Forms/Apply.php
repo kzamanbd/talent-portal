@@ -3,6 +3,7 @@
 namespace TalentPortal\Forms;
 
 use TalentPortal\Repositories\ApplicantRepository;
+use TalentPortal\Traits\Helpers;
 
 /**
  * Class Apply
@@ -11,7 +12,7 @@ use TalentPortal\Repositories\ApplicantRepository;
 
 class Apply
 {
-
+    use Helpers;
     /**
      * @var ApplicantRepository
      */
@@ -107,15 +108,13 @@ class Apply
                 // Send notification email
                 $to = $email;
                 $cv_url = $move[ 'url' ];
-                $subject = "New Applicant Submission - $first_name $last_name";
-                $message = "You have received a new application for the position of $post_name.\n\n" .
-                    "Name: $first_name $last_name\n" .
-                    "Email: $email\n" .
-                    "Mobile: $mobile\n" .
-                    "Address: $address\n" .
-                    "CV: $cv_url\n";
+                $name = $first_name . ' ' . $last_name;
+                $subject = __( 'We have received your application', 'talent-portal' );
+                ob_start();
+                $this->view( 'email-template', compact( 'name', 'post_name' ) );
+                $message = ob_get_clean();
 
-                wp_mail( $to, $subject, $message );
+                wp_mail( $to, $subject, $message, [ 'Content-Type: text/html; charset=UTF-8' ] );
 
                 wp_send_json_success( [
                     'message' => __( 'Application submitted successfully!', 'talent-portal' ),
