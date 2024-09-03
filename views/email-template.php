@@ -82,9 +82,7 @@
                                     </p>
 
                                     <p class="text">
-                                        <?php _e( 'All applications will go through a rigorous screening process which has multiple
-                                        steps. You will receive notifications regarding the next steps of our
-                                        recruitment.', 'talent-portal' )?>
+                                        <?php _e( 'All applications will go through a rigorous screening process which has multiple steps. You receive notifications regarding the next steps of our recruitment.', 'talent-portal' )?>
                                     </p>
                                     <p class="text">
                                         <?php _e( 'Thanks for your interest, we look forward to getting to know you better!', 'talent-portal' )?>
