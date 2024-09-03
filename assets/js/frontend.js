@@ -20,10 +20,11 @@ console.log('Hello from frontend', talentPortal);
             processData: false,
             success: function (response) {
                 if (response.success) {
-                    messageContainer.html('<div class="success">' + response.data.message + '</div>');
+                    messageContainer.html('<div class="alert success">' + response.data.message + '</div>');
                     $('#applicant_form')[0].reset(); // Reset the form after successful submission
+                    $('#cv-upload-label').html('Choose file');
                 } else {
-                    messageContainer.html('<div class="error">' + response.data.message + '</div>');
+                    messageContainer.html('<div class="alert error">' + response.data.message + '</div>');
                 }
                 submitBtn.attr('disabled', false);
                 submitBtn.html('Apply');

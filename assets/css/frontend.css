@@ -44,13 +44,20 @@
 #form_message {
     margin-top: 20px;
 }
+#form_message .alert {
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
 #form_message .success {
     color: var(--success);
+    background-color: var(--greenish-white);
     margin-top: 20px;
 }
 
 #form_message .error {
     color: var(--danger);
+    background-color: var(--redish-white);
     margin-top: 20px;
 }
 
@@ -58,10 +65,12 @@
 #applicant_form .talent__submit {
     color: #fff;
     border: none;
-    padding: 10px 20px !important;
+    padding: 10px 30px !important;
     background-color: var(--primary);
     border-radius: 4px;
     cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 #applicant_form .talent__submit:disabled {

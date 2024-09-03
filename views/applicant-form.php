@@ -29,6 +29,7 @@
     <div class="form-group">
         <label for="post_name">Post Name: <span>*</span></label>
         <select name="post_name" id="post_name" class="talent__form-control" required>
+            <option value="" hidden>Select Position</option>
             <option value="DevOps Engineer">DevOps Engineer</option>
             <option value="Software Engineer">Software Engineer</option>
             <option value="Data Scientist">Data Scientist</option>
