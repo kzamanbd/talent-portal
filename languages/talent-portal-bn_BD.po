@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Talent Portal 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/talent-portal\n"
 "POT-Creation-Date: 2024-09-03T06:51:32+00:00\n"
-"PO-Revision-Date: 2024-09-03 20:21+0600\n"
+"PO-Revision-Date: 2024-09-03 20:28+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: bn_BD\n"
@@ -116,7 +116,7 @@ msgstr "আপনি ইতিমধ্যে এই পোস্টের জ�
 
 #: includes/Shortcodes/ApplicantForm.php:136
 msgid "Application submitted successfully!"
-msgstr "আবেদন সফলভাবে জমা!"
+msgstr "আবেদন সফলভাবে জমা হয়েছে"
 
 #: includes/Shortcodes/ApplicantForm.php:156
 msgid "Nonce verification failed!"
