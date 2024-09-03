@@ -147,5 +147,5 @@ msgid "Application Submission List"
 msgstr "আবেদন জমার তালিকা"
 
 #: views/applicant-view.php:6
-msgid "Talent has been deleted successfully!"
+msgid "Application has been deleted successfully!"
 msgstr "আবেদন সফলভাবে মুছে ফেলা হয়েছে!"

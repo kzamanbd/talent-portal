@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-09-03T06:51:32+00:00\n"
+"POT-Creation-Date: 2024-09-03T18:01:46+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: talent-portal\n"
@@ -45,6 +45,26 @@ msgstr ""
 msgid "Talent Portal has been activated successfully!"
 msgstr ""
 
+#: includes/Admin/Actions/Applicant.php:37
+msgid "Nonce verification failed!"
+msgstr ""
+
+#: includes/Admin/Actions/Applicant.php:44
+msgid "No permission!"
+msgstr ""
+
+#: includes/Admin/Actions/Applicant.php:53
+msgid "Invalid application ID!"
+msgstr ""
+
+#: includes/Admin/Actions/Applicant.php:62
+msgid "Error deleting application!"
+msgstr ""
+
+#: includes/Admin/Actions/Applicant.php:68
+msgid "Application deleted successfully!"
+msgstr ""
+
 #: includes/Admin/ApplicationList.php:42
 msgid "Search Applicants"
 msgstr ""
@@ -77,19 +97,19 @@ msgstr ""
 msgid "CV"
 msgstr ""
 
-#: includes/Admin/ApplicationList.php:120
+#: includes/Admin/ApplicationList.php:118
 msgid "View CV"
 msgstr ""
 
-#: includes/Admin/ApplicationList.php:154
+#: includes/Admin/ApplicationList.php:152
 msgid "Move to Trash"
 msgstr ""
 
-#: includes/Admin/ApplicationList.php:172
+#: includes/Admin/ApplicationList.php:170
 msgid "Selected applicants have been deleted."
 msgstr ""
 
-#: includes/Admin/ApplicationList.php:188
+#: includes/Admin/ApplicationList.php:186
 msgid "Trash"
 msgstr ""
 
@@ -102,40 +122,28 @@ msgstr ""
 msgid "Are you sure?"
 msgstr ""
 
-#: includes/Shortcodes/ApplicantForm.php:61
+#: includes/Forms/Apply.php:36
 msgid "Request verification failed!"
 msgstr ""
 
-#: includes/Shortcodes/ApplicantForm.php:76
+#: includes/Forms/Apply.php:51
 msgid "All fields are required!"
 msgstr ""
 
-#: includes/Shortcodes/ApplicantForm.php:84
+#: includes/Forms/Apply.php:59
 msgid "Invalid email address!"
 msgstr ""
 
-#: includes/Shortcodes/ApplicantForm.php:94
+#: includes/Forms/Apply.php:69
 msgid "You have already applied for this post!"
 msgstr ""
 
-#: includes/Shortcodes/ApplicantForm.php:136
+#: includes/Forms/Apply.php:86
+msgid "Invalid file type! Only PDF, DOC, DOCX files are allowed."
+msgstr ""
+
+#: includes/Forms/Apply.php:121
 msgid "Application submitted successfully!"
-msgstr ""
-
-#: includes/Shortcodes/ApplicantForm.php:156
-msgid "Nonce verification failed!"
-msgstr ""
-
-#: includes/Shortcodes/ApplicantForm.php:163
-msgid "No permission!"
-msgstr ""
-
-#: includes/Shortcodes/ApplicantForm.php:172
-msgid "Invalid application ID!"
-msgstr ""
-
-#: includes/Shortcodes/ApplicantForm.php:180
-msgid "Application deleted successfully!"
 msgstr ""
 
 #: includes/Widgets/Dashboard.php:27
@@ -151,5 +159,5 @@ msgid "Application Submission List"
 msgstr ""
 
 #: views/applicant-view.php:6
-msgid "Talent has been deleted successfully!"
+msgid "Application has been deleted successfully!"
 msgstr ""
