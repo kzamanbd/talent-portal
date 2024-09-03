@@ -8,6 +8,9 @@ console.log('Hello from frontend', talentPortal);
 
         submitBtn.attr('disabled', true);
         submitBtn.html('Loading...');
+        const messageContainer = $('#form_message');
+
+        messageContainer.html('');
 
         $.ajax({
             url: talentPortal.ajax_url,
@@ -16,7 +19,6 @@ console.log('Hello from frontend', talentPortal);
             contentType: false,
             processData: false,
             success: function (response) {
-                var messageContainer = $('#form_message');
                 if (response.success) {
                     messageContainer.html('<div class="success">' + response.data.message + '</div>');
                     $('#applicant_form')[0].reset(); // Reset the form after successful submission
@@ -33,5 +35,29 @@ console.log('Hello from frontend', talentPortal);
                 );
             }
         });
+    });
+
+    $('#cv-upload').on('change', function () {
+        const file = $(this).prop('files')[0];
+        const fileSize = file.size / 1024 / 1024; // in MB
+        const allowedTypes = [
+            'application/pdf',
+            'application/msword',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ];
+
+        if (fileSize > 5) {
+            alert('File size must be less than 5MB');
+            $(this).val('');
+            return;
+        }
+
+        if (!allowedTypes.includes(file.type)) {
+            alert('Please upload a valid file type. Allowed types are PDF, DOC, DOCX');
+            $(this).val('');
+            return;
+        }
+
+        $('#cv-upload-label').html(file.name);
     });
 })(jQuery);
