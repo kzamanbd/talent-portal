@@ -78,6 +78,16 @@ class Apply
             $uploaded_file = $_FILES[ 'cv' ];
             $upload_overrides = array( 'test_form' => false );
 
+            // check file type only pdf and doc or docx
+            $allowed_types = [ 'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ];
+
+            if ( !in_array( $uploaded_file[ 'type' ], $allowed_types ) ) {
+                wp_send_json_error( [
+                    'message' => __( 'Invalid file type! Only PDF, DOC, DOCX files are allowed.', 'talent-portal' ),
+                 ] );
+                return;
+            }
+
             $move = wp_handle_upload( $uploaded_file, $upload_overrides );
 
             if ( $move && !isset( $move[ 'error' ] ) ) {
