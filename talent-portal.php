@@ -183,7 +183,7 @@ final class TalentPortal
         load_plugin_textdomain(
             'talent-portal',
             false,
-            WP_TALENT_PORTAL_FILE . '/languages/'
+            basename( __DIR__ ) . '/languages'
         );
     }
 
