@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-09-03T18:01:46+00:00\n"
+"POT-Creation-Date: 2024-09-03T19:00:58+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: talent-portal\n"
@@ -122,27 +122,31 @@ msgstr ""
 msgid "Are you sure?"
 msgstr ""
 
-#: includes/Forms/Apply.php:36
+#: includes/Forms/Apply.php:37
 msgid "Request verification failed!"
 msgstr ""
 
-#: includes/Forms/Apply.php:51
+#: includes/Forms/Apply.php:52
 msgid "All fields are required!"
 msgstr ""
 
-#: includes/Forms/Apply.php:59
+#: includes/Forms/Apply.php:60
 msgid "Invalid email address!"
 msgstr ""
 
-#: includes/Forms/Apply.php:69
+#: includes/Forms/Apply.php:70
 msgid "You have already applied for this post!"
 msgstr ""
 
-#: includes/Forms/Apply.php:86
+#: includes/Forms/Apply.php:87
 msgid "Invalid file type! Only PDF, DOC, DOCX files are allowed."
 msgstr ""
 
-#: includes/Forms/Apply.php:121
+#: includes/Forms/Apply.php:112
+msgid "We have received your application"
+msgstr ""
+
+#: includes/Forms/Apply.php:120
 msgid "Application submitted successfully!"
 msgstr ""
 
@@ -160,4 +164,32 @@ msgstr ""
 
 #: views/applicant-view.php:6
 msgid "Application has been deleted successfully!"
+msgstr ""
+
+#: views/email-template.php:77
+msgid "Hi"
+msgstr ""
+
+#: views/email-template.php:80
+msgid "Your application for the position"
+msgstr ""
+
+#: views/email-template.php:81
+msgid "has been received."
+msgstr ""
+
+#: views/email-template.php:85
+msgid "All applications will go through a rigorous screening process which has multiple steps. You receive notifications regarding the next steps of our recruitment."
+msgstr ""
+
+#: views/email-template.php:88
+msgid "Thanks for your interest, we look forward to getting to know you better!"
+msgstr ""
+
+#: views/email-template.php:91
+msgid "Best regards,"
+msgstr ""
+
+#: views/email-template.php:94
+msgid "Talent Portal Team"
 msgstr ""

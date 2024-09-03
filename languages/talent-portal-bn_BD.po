@@ -1,9 +1,11 @@
+# Copyright (C) 2024 Kamruzzaman
+# This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: Talent Portal 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/talent-portal\n"
-"POT-Creation-Date: 2024-09-03T06:51:32+00:00\n"
-"PO-Revision-Date: 2024-09-03 20:28+0600\n"
+"POT-Creation-Date: 2024-09-03T19:00:58+00:00\n"
+"PO-Revision-Date: 2024-09-04 01:11+0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: bn_BD\n"
@@ -42,6 +44,26 @@ msgstr "https://draftscripts.com/wp-plugin"
 msgid "Talent Portal has been activated successfully!"
 msgstr "ট্যালেন্ট পোর্টাল সফলভাবে সক্রিয় করা হয়েছে!"
 
+#: includes/Admin/Actions/Applicant.php:37
+msgid "Nonce verification failed!"
+msgstr "ননস ভেরিফিকেশন ব্যর্থ!"
+
+#: includes/Admin/Actions/Applicant.php:44
+msgid "No permission!"
+msgstr "অনুমতি নেই!"
+
+#: includes/Admin/Actions/Applicant.php:53
+msgid "Invalid application ID!"
+msgstr "অবৈধ অ্যাপ্লিকেশন আইডি!"
+
+#: includes/Admin/Actions/Applicant.php:62
+msgid "Error deleting application!"
+msgstr "অ্যাপ্লিকেশন মুছে ফেলার ত্রুটি!"
+
+#: includes/Admin/Actions/Applicant.php:68
+msgid "Application deleted successfully!"
+msgstr "অ্যাপ্লিকেশন সফলভাবে মুছে ফেলা হয়েছে!"
+
 #: includes/Admin/ApplicationList.php:42
 msgid "Search Applicants"
 msgstr "আবেদনকারীদের অনুসন্ধান করুন"
@@ -74,19 +96,19 @@ msgstr "জমা দেওয়ার তারিখ"
 msgid "CV"
 msgstr "সিভি"
 
-#: includes/Admin/ApplicationList.php:120
+#: includes/Admin/ApplicationList.php:118
 msgid "View CV"
 msgstr "সিভি দেখুন"
 
-#: includes/Admin/ApplicationList.php:154
+#: includes/Admin/ApplicationList.php:152
 msgid "Move to Trash"
 msgstr "ট্র্যাশে সরান"
 
-#: includes/Admin/ApplicationList.php:172
+#: includes/Admin/ApplicationList.php:170
 msgid "Selected applicants have been deleted."
 msgstr "নির্বাচিত আবেদনকারীদের মুছে ফেলা হয়েছে."
 
-#: includes/Admin/ApplicationList.php:188
+#: includes/Admin/ApplicationList.php:186
 msgid "Trash"
 msgstr "মুছে ফেলুন"
 
@@ -98,41 +120,33 @@ msgstr "কিছু ভুল হয়েছে"
 msgid "Are you sure?"
 msgstr "আপনি কি নিশ্চিত?"
 
-#: includes/Shortcodes/ApplicantForm.php:61
+#: includes/Forms/Apply.php:37
 msgid "Request verification failed!"
 msgstr "যাচাইকরণের অনুরোধ ব্যর্থ হয়েছে!"
 
-#: includes/Shortcodes/ApplicantForm.php:76
+#: includes/Forms/Apply.php:52
 msgid "All fields are required!"
 msgstr "সমস্ত ক্ষেত্র প্রয়োজনীয়!"
 
-#: includes/Shortcodes/ApplicantForm.php:84
+#: includes/Forms/Apply.php:60
 msgid "Invalid email address!"
 msgstr "অবৈধ ইমেল ঠিকানা!"
 
-#: includes/Shortcodes/ApplicantForm.php:94
+#: includes/Forms/Apply.php:70
 msgid "You have already applied for this post!"
 msgstr "আপনি ইতিমধ্যে এই পোস্টের জন্য আবেদন করেছেন!"
 
-#: includes/Shortcodes/ApplicantForm.php:136
+#: includes/Forms/Apply.php:87
+msgid "Invalid file type! Only PDF, DOC, DOCX files are allowed."
+msgstr "অবৈধ ফাইল প্রকার! শুধুমাত্র PDF, DOC, DOCX ফাইল অনুমোদিত"
+
+#: includes/Forms/Apply.php:112
+msgid "We have received your application"
+msgstr "আমরা আপনার আবেদন পেয়েছি"
+
+#: includes/Forms/Apply.php:120
 msgid "Application submitted successfully!"
-msgstr "আবেদন সফলভাবে জমা হয়েছে"
-
-#: includes/Shortcodes/ApplicantForm.php:156
-msgid "Nonce verification failed!"
-msgstr "ননস ভেরিফিকেশন ব্যর্থ!"
-
-#: includes/Shortcodes/ApplicantForm.php:163
-msgid "No permission!"
-msgstr "অনুমতি নেই!"
-
-#: includes/Shortcodes/ApplicantForm.php:172
-msgid "Invalid application ID!"
-msgstr "অবৈধ অ্যাপ্লিকেশন আইডি!"
-
-#: includes/Shortcodes/ApplicantForm.php:180
-msgid "Application deleted successfully!"
-msgstr "অ্যাপ্লিকেশন সফলভাবে মুছে ফেলা হয়েছে!"
+msgstr "আবেদন সফলভাবে জমা!"
 
 #: includes/Widgets/Dashboard.php:27
 msgid "Latest Applicant Submissions"
@@ -148,4 +162,32 @@ msgstr "আবেদন জমার তালিকা"
 
 #: views/applicant-view.php:6
 msgid "Application has been deleted successfully!"
-msgstr "আবেদন সফলভাবে মুছে ফেলা হয়েছে!"
+msgstr "অ্যাপ্লিকেশন সফলভাবে মুছে ফেলা হয়েছে!"
+
+#: views/email-template.php:77
+msgid "Hi"
+msgstr "হাই"
+
+#: views/email-template.php:80
+msgid "Your application for the position"
+msgstr "পদের জন্য আপনার আবেদন"
+
+#: views/email-template.php:81
+msgid "has been received."
+msgstr "গৃহীত হয়েছে।"
+
+#: views/email-template.php:85
+msgid "All applications will go through a rigorous screening process which has multiple steps. You receive notifications regarding the next steps of our recruitment."
+msgstr "সমস্ত অ্যাপ্লিকেশন একটি কঠোর স্ক্রীনিং প্রক্রিয়ার মধ্য দিয়ে যাবে যার একাধিক ধাপ রয়েছে। আপনি আমাদের নিয়োগের পরবর্তী পদক্ষেপের বিষয়ে বিজ্ঞপ্তি পাবেন।"
+
+#: views/email-template.php:88
+msgid "Thanks for your interest, we look forward to getting to know you better!"
+msgstr "আপনার আগ্রহের জন্য ধন্যবাদ, আমরা আপনাকে আরও ভালভাবে জানার জন্য উন্মুখ!"
+
+#: views/email-template.php:91
+msgid "Best regards,"
+msgstr "শুভেচ্ছা,"
+
+#: views/email-template.php:94
+msgid "Talent Portal Team"
+msgstr "ট্যালেন্ট পোর্টাল টিম"
