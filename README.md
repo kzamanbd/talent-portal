@@ -21,7 +21,7 @@ A WordPress plugin to collect applicant information via a form, store submission
 
 ## Changelog
 
-### 1.0
+### 1.0.0
 
 - Initial release
 
