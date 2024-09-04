@@ -13,27 +13,13 @@ if ( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-class TalentPortalUninstall
-{
-    public function __construct()
-    {
-        $this->deleteApplicants();
-    }
-
-    public function deleteApplicants()
-    {
-        // Clear Database stored data
-        ( new ApplicantRepository() )->cleanup();
-    }
-}
-
 /**
  * Uninstall
  */
 
 function uninstall()
 {
-    return new TalentPortalUninstall();
+    return ( new ApplicantRepository() )->cleanup();
 }
 
 uninstall();
