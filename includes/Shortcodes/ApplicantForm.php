@@ -10,6 +10,8 @@ use TalentPortal\Traits\Helpers;
  * @package TalentPortal\Shortcodes
  *
  * @since 1.0.0
+ *
+ * @see TalentShortcode
  */
 class ApplicantForm extends TalentShortcode
 {
