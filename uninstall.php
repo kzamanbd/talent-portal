@@ -11,18 +11,7 @@ if ( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
     exit;
 }
 
-class TalentPortalUninstall
-{
-    public function __construct()
-    {
-        $this->deleteApplicants();
-    }
-
-    public function deleteApplicants()
-    {
-        // Clear Database stored data
-        ( new ApplicantRepository() )->cleanup();
-    }
-}
-
-new TalentPortalUninstall();
+// Clear Database stored data
+$table_name = ApplicantRepository::get_table_name();
+global $wpdb;
+return $wpdb->query( "DROP TABLE IF EXISTS $table_name" );
