@@ -1,1 +1,29 @@
 /* admin css */
+
+:root {
+    --success: #2cda94;
+    --danger: #df2a43;
+    --redish-white: #f5bec6;
+    --greenish-white: #d2fccc;
+}
+
+#form_message {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#form_message .alert {
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+#form_message .success {
+    color: var(--success);
+    background-color: var(--greenish-white);
+    margin-top: 20px;
+}
+
+#form_message .error {
+    color: var(--danger);
+    background-color: var(--redish-white);
+    margin-top: 20px;
+}

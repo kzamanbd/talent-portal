@@ -7,6 +7,8 @@
         </div>
     <?php }?>
 
+    <div id="form_message"></div>
+
     <form  method="post">
         <?php \TalentPortal\Admin\ApplicationList::instance();?>
     </form>
