@@ -34,6 +34,8 @@ console.log('Hello from frontend', talentPortal);
                 $('#form_message').html(
                     '<div class="error">There was an error processing your request. Please try again.</div>'
                 );
+                submitBtn.attr('disabled', false);
+                submitBtn.html('Apply');
             }
         });
     });
