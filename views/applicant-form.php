@@ -1,4 +1,3 @@
-<div id="form_message"></div>
 <form method="post" id="applicant_form" enctype="multipart/form-data">
 
     <div class="form-group">
@@ -65,7 +64,7 @@
     <?php wp_nonce_field( 'talent_portal_apply' );?>
 
     <input type="hidden" name="action" value="talent_portal_apply">
-
+    <div id="form_message"></div>
     <div class="form-group">
         <button type="submit" class="talent__submit">
             Apply
