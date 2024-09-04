@@ -128,7 +128,7 @@ class ApplicationList extends \WP_List_Table
             case 'submission_date':
                 return wp_date( get_option( 'date_format' ), strtotime( $item->submission_date ) );
             case 'cv':
-                return sprintf( '<a href="%s" target="_blank">%s</a>', $item->cv_path, __( 'View CV', 'talent-portal' ) );
+                return sprintf( '<a href="%s" target="_blank" download>%s</a>', WP_CONTENT_URL . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $item->cv_path, __( 'View CV', 'talent-portal' ) );
             default:
                 return isset( $item->$column_name ) ? $item->$column_name : '';
         }
