@@ -103,6 +103,15 @@ class Apply
                  ] );
                 return;
             }
+
+            // Generate a unique file name
+            $original_filename = pathinfo( $uploaded_file[ 'name' ], PATHINFO_FILENAME );
+            $extension = pathinfo( $uploaded_file[ 'name' ], PATHINFO_EXTENSION );
+            $unique_filename = $original_filename . '-' . uniqid() . '.' . $extension;
+
+            // Set the unique filename in the $_FILES array
+            $uploaded_file[ 'name' ] = $unique_filename;
+
             // upload file
             $move = wp_handle_upload( $uploaded_file, $upload_overrides );
 
@@ -122,7 +131,6 @@ class Apply
 
                 // Send notification email
                 $to = $email;
-                $cv_url = $move[ 'url' ];
                 $name = $first_name . ' ' . $last_name;
                 $subject = __( 'We have received your application', 'talent-portal' );
                 ob_start();
