@@ -210,6 +210,13 @@ class ApplicantRepository
     public function cleanup()
     {
         global $wpdb;
+        // if cv_path is not empty, delete the file
+        $applicants = $wpdb->get_results( "SELECT * FROM $this->table_name" );
+        foreach ( $applicants as $applicant ) {
+            if ( !empty( $applicant->cv_path ) ) {
+                unlink( wp_get_upload_dir()[ 'basedir' ] . '/' . $applicant->cv_path );
+            }
+        }
         return $wpdb->query( "DROP TABLE IF EXISTS $this->table_name" );
     }
 }
