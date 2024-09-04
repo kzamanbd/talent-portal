@@ -2,33 +2,48 @@
 
 namespace TalentPortal\Repositories;
 
-use TalentPortal\Install\Installer;
-
 /**
  * Class ApplicantRepository
+ *
  * @package TalentPortal\Repositories
+ *
+ * @since 1.0.0
  */
 class ApplicantRepository
 {
     /**
-     * @var string
      * Table name
+     * @var string
      */
-    private $table_name;
+    private string $table_name;
 
     /**
      * ApplicantRepository constructor.
+     * Set table name
+     *
+     * @return void
      */
     public function __construct()
     {
+        $this->table_name = self::get_table_name();
+    }
+
+    /**
+     * Get table name
+     *
+     * @return string
+     */
+    public static function get_table_name()
+    {
         global $wpdb;
-        $this->table_name = $wpdb->prefix . Installer::TABLE_NAME;
+        return $wpdb->prefix . 'applicant_submissions';
     }
 
     /**
      * Insert data into the table
      *
      * @param $data array
+     *
      * @return int
      */
     public function insert( $data )
@@ -43,6 +58,7 @@ class ApplicantRepository
      *
      * @param array $args
      * @param string $search
+     *
      * @return array
      */
 
@@ -69,6 +85,7 @@ class ApplicantRepository
      * Get applicant by ID
      *
      * @param $id
+     *
      * @return array
      */
 
@@ -82,6 +99,7 @@ class ApplicantRepository
      * Find applicant by email
      *
      * @param $email
+     *
      * @return array
      */
 
@@ -96,6 +114,7 @@ class ApplicantRepository
      *
      * @param $data
      * @param $id
+     *
      * @return int
      */
 
@@ -109,6 +128,7 @@ class ApplicantRepository
      * Delete applicant
      *
      * @param $ids
+     *
      * @return false|int
      */
     public function delete( $ids )
@@ -129,6 +149,14 @@ class ApplicantRepository
         }
     }
 
+    /**
+     * Delete applicant by ID
+     *
+     * @param $id
+     *
+     * @return false|int
+     */
+
     public function delete_by_id( $id )
     {
         global $wpdb;
@@ -140,6 +168,13 @@ class ApplicantRepository
         return $wpdb->delete( $this->table_name, [ 'id' => $id ] );
     }
 
+    /**
+     * Count applicants
+     *
+     * @param string $search
+     *
+     * @return int
+     */
     public function count( $search = '' )
     {
         global $wpdb;
@@ -152,22 +187,29 @@ class ApplicantRepository
         return $wpdb->get_var( $query );
     }
 
+    /**
+     * Get latest applications
+     *
+     * @param int $limit
+     *
+     * @return array
+     */
+
     public function latest_applications( $limit = 5 )
     {
         global $wpdb;
         return $wpdb->get_results( "SELECT * FROM $this->table_name ORDER BY submission_date DESC LIMIT $limit" );
     }
 
+    /**
+     * Cleanup
+     *
+     * @return false|int
+     */
+
     public function cleanup()
     {
         global $wpdb;
-        // if cv_path is not empty, delete the file
-        $applicants = $wpdb->get_results( "SELECT * FROM $this->table_name" );
-        foreach ( $applicants as $applicant ) {
-            if ( !empty( $applicant[ 'cv_path' ] ) ) {
-                unlink( wp_get_upload_dir()[ 'basedir' ] . '/' . $applicant[ 'cv_path' ] );
-            }
-        }
         return $wpdb->query( "DROP TABLE IF EXISTS $this->table_name" );
     }
 }

@@ -5,12 +5,16 @@ namespace TalentPortal;
 /**
  * Class Assets
  * @package TalentPortal
+ *
+ * @since 1.0.0
  */
 class Assets
 {
 
     /**
      * Class constructor
+     *
+     * @return void
      */
     function __construct()
     {

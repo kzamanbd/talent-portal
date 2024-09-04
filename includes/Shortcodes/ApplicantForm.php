@@ -8,6 +8,8 @@ use TalentPortal\Traits\Helpers;
 /**
  * Class ApplicantForm
  * @package TalentPortal\Shortcodes
+ *
+ * @since 1.0.0
  */
 class ApplicantForm extends TalentShortcode
 {
@@ -15,6 +17,7 @@ class ApplicantForm extends TalentShortcode
 
     /**
      * Get shortcode tag
+     *
      * @return string
      */
     public function get_shortcode_tag()
@@ -24,6 +27,10 @@ class ApplicantForm extends TalentShortcode
 
     /**
      * Render shortcode
+     *
+     * @param $attrs array
+     * @param string $content
+     *
      * @return void
      */
     public function render( $attrs, $content = '' )

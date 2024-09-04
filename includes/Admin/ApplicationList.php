@@ -12,6 +12,8 @@ if ( !class_exists( 'WP_List_Table' ) ) {
 /**
  * Class ApplicationList
  * @package TalentPortal
+ *
+ * @since 1.0.0
  */
 
 class ApplicationList extends \WP_List_Table
@@ -27,11 +29,14 @@ class ApplicationList extends \WP_List_Table
 
     /**
      * ApplicationList constructor.
+     *
+     * @return void
      */
     public function __construct()
     {
         $this->applicant_repository = new ApplicantRepository();
 
+        // Set parent defaults
         parent::__construct( [
             'singular' => 'application',
             'plural'   => 'applications',
@@ -58,7 +63,9 @@ class ApplicationList extends \WP_List_Table
     }
 
     /**
-     * Prepare items
+     * Prepare items to display
+     *
+     * @return void
      */
     public function prepare_items()
     {
@@ -92,7 +99,9 @@ class ApplicationList extends \WP_List_Table
     }
 
     /**
-     * Get columns
+     * Get columns for the table
+     *
+     *
      * @return array
      */
     public function get_columns()
@@ -108,7 +117,11 @@ class ApplicationList extends \WP_List_Table
          ];
     }
 
-    // Column rendering
+    /**
+     * Default column values
+     *
+     * @param object $item
+     */
     public function column_default( $item, $column_name )
     {
         switch ( $column_name ) {
@@ -123,6 +136,7 @@ class ApplicationList extends \WP_List_Table
 
     /**
      * Get hidden columns
+     *
      * @return array
      */
     public function get_hidden_columns()
@@ -132,6 +146,7 @@ class ApplicationList extends \WP_List_Table
 
     /**
      * Get sortable columns
+     *
      * @return array
      */
     public function get_sortable_columns()
@@ -157,6 +172,8 @@ class ApplicationList extends \WP_List_Table
 
     /**
      * Process the bulk action
+     *
+     * @return void
      */
 
     public function process_bulk_action()
@@ -210,8 +227,11 @@ class ApplicationList extends \WP_List_Table
 
     /**
      * Render the search box
+     *
      * @param string $text
      * @param string $input_id
+     *
+     * @return void
      */
 
     public function search_box( $text, $input_id )
@@ -225,6 +245,7 @@ class ApplicationList extends \WP_List_Table
 
     /**
      * Get applications
+     *
      * @return array
      */
     public function get_applications( $args = [  ] )
@@ -249,6 +270,7 @@ class ApplicationList extends \WP_List_Table
 
     /**
      * Submission count
+     *
      * @return int
      */
     public function submission_count()

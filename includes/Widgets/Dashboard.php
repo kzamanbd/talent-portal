@@ -8,17 +8,31 @@ use TalentPortal\Traits\Singleton;
 
 /**
  * Dashboard Widgets
+ * @package TalentPortal
  *
+ * @since 1.0.0
  */
 
 class Dashboard
 {
     use Singleton, Helpers;
 
+    /**
+     * Dashboard constructor.
+     *
+     * @return void
+     */
+
     public function __construct()
     {
         add_action( 'wp_dashboard_setup', [ $this, 'add_dashboard_widgets' ] );
     }
+
+    /**
+     * Add dashboard widgets
+     *
+     * @return void
+     */
 
     public function add_dashboard_widgets()
     {
@@ -29,6 +43,11 @@ class Dashboard
         );
     }
 
+    /**
+     * Render applicant submissions widget
+     *
+     * @return void
+     */
     public function render_applicant_submissions_widget()
     {
         $repository = new ApplicantRepository();

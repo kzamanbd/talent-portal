@@ -2,14 +2,17 @@
 
 namespace TalentPortal\Install;
 
+use TalentPortal\Repositories\ApplicantRepository;
+
 /**
  * Class Installer
  * @package TalentPortal
+ *
+ * @since 1.0.0
  */
 
 class Installer
 {
-    const TABLE_NAME = 'applicant_submissions';
     /**
      * Run the installer
      *
@@ -26,6 +29,8 @@ class Installer
 
     /**
      * Add time and version on DB
+     *
+     * @return void
      */
     public function add_version()
     {
@@ -49,7 +54,7 @@ class Installer
 
         $charset_collate = $wpdb->get_charset_collate();
 
-        $table_name = $wpdb->prefix . self::TABLE_NAME;
+        $table_name = ApplicantRepository::get_table_name();
 
         $schema = "CREATE TABLE IF NOT EXISTS $table_name (
             id int(11) unsigned NOT NULL AUTO_INCREMENT,

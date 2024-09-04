@@ -8,6 +8,10 @@ use TalentPortal\Traits\Singleton;
 
 /**
  * Ajax handler class
+ * @package TalentPortal
+ *
+ *
+ * @since 1.0.0
  */
 class Ajax
 {
@@ -15,6 +19,8 @@ class Ajax
 
     /**
      * Class constructor
+     *
+     * @return void
      */
     function __construct()
     {

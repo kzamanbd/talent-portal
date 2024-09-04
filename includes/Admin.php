@@ -8,6 +8,8 @@ use TalentPortal\Traits\Singleton;
 /**
  * Class Admin
  * @package TalentPortal
+ *
+ * @since 1.0.0
  */
 
 class Admin
@@ -16,6 +18,8 @@ class Admin
 
     /**
      * Admin constructor.
+     *
+     * @return void
      */
 
     public function __construct()
@@ -26,6 +30,7 @@ class Admin
 
     /**
      * Add menu
+     *
      * @return void
      */
     public function add_menu()
@@ -40,11 +45,22 @@ class Admin
         );
     }
 
+    /**
+     * Render view
+     *
+     * @return void
+     */
+
     public function render()
     {
         $this->view( 'applicant-view' );
     }
 
+    /**
+     * Show activation notice
+     *
+     * @return void
+     */
     public function show_activation_notice()
     {
         if ( get_transient( 'applicant_submission_activation_notice' ) ) {

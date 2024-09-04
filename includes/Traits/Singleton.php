@@ -5,18 +5,22 @@ namespace TalentPortal\Traits;
 /**
  * Singleton Trait
  *
+ *
+ * @since 1.0.0
  */
 trait Singleton
 {
 
     /**
      * Singleton class instance holder
+     *
      * @var static
      */
     protected static $instance;
 
     /**
      * Make a class instance
+     *
      * @return static
      */
     public static function instance()

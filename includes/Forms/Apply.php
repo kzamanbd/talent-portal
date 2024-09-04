@@ -8,11 +8,13 @@ use TalentPortal\Traits\Helpers;
 /**
  * Class Apply
  * @package TalentPortal\Forms
+ * @since 1.0.0
  */
 
 class Apply
 {
     use Helpers;
+
     /**
      * @var ApplicantRepository
      */
@@ -21,6 +23,8 @@ class Apply
 
     /**
      * ApplicantForm constructor.
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -28,10 +32,12 @@ class Apply
     }
     /**
      * Handle form submissions
+     *
      * @return void
      */
     public function handle_applicant_form_submission()
     {
+        // Verify nonce
         if ( !wp_verify_nonce( $_REQUEST[ '_wpnonce' ], 'talent_portal_apply' ) ) {
             wp_send_json_error( [
                 'message' => __( 'Request verification failed!', 'talent-portal' ),
@@ -47,6 +53,7 @@ class Apply
             $mobile = sanitize_text_field( $_POST[ 'mobile' ] );
             $post_name = sanitize_text_field( $_POST[ 'post_name' ] );
 
+            // Validate required fields
             if ( empty( $first_name ) || empty( $address ) || empty( $email ) || empty( $mobile ) || empty( $post_name ) ) {
                 wp_send_json_error( [
                     'message' => __( 'All fields are required!', 'talent-portal' ),
@@ -96,7 +103,7 @@ class Apply
                  ] );
                 return;
             }
-
+            // upload file
             $move = wp_handle_upload( $uploaded_file, $upload_overrides );
 
             if ( $move && !isset( $move[ 'error' ] ) ) {
@@ -122,17 +129,23 @@ class Apply
                 $this->view( 'email-template', compact( 'name', 'post_name' ) );
                 $message = ob_get_clean();
 
+                // Send email
                 wp_mail( $to, $subject, $message, [ 'Content-Type: text/html; charset=UTF-8' ] );
 
+                // Send success response
                 wp_send_json_success( [
                     'message' => __( 'Application submitted successfully!', 'talent-portal' ),
                  ] );
             } else {
+                // Send error response
                 wp_send_json_error( [
                     'message' => 'Error uploading CV: ' . $move[ 'error' ],
                  ] );
             }
+        } else {
+            wp_send_json_error( [
+                'message' => __( 'Invalid request!', 'talent-portal' ),
+             ] );
         }
-        wp_die();
     }
 }
