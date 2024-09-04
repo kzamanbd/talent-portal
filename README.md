@@ -19,7 +19,14 @@ A WordPress plugin to collect applicant information via a form, store submission
 2. Activate the plugin through the 'Plugins' screen in WordPress.
 3. Use the shortcode `[applicant_form]` to display the form on any page or post.
 
-## Changelog
+## Download and Installation
+
+1. Download the plugin from the [GitHub repository](https://github.com/kzamanbd/talent-portal/releases/download/v1.0.0/talent-portal.zip).
+2. Upload the plugin to your WordPress site.
+3. Activate the plugin.
+4. Use the shortcode `[applicant_form]` to display the form on any page or post.
+
+## [Changelog](https://github.com/kzamanbd/talent-portal/commits/v1.0.0)
 
 ### 1.0.0
 
