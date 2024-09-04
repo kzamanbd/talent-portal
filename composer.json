@@ -18,24 +18,5 @@
             "email": "kzamanbn@gmail.com"
         }
     ],
-    "require-dev": {
-        "wp-coding-standards/wpcs": "^3.1",
-        "phpcompatibility/phpcompatibility-wp": "^2.1"
-    },
-    "config": {
-        "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
-    },
-    "scripts": {
-        "phpcs": [
-            "vendor/bin/phpcs -p -s"
-        ],
-        "phpcs:report": [
-            "vendor/bin/phpcs --report-file='phpcs-report.txt'"
-        ],
-        "phpcbf": [
-            "vendor/bin/phpcbf -p"
-        ]
-    }
+    "require-dev": {}
 }
