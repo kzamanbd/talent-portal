@@ -2,6 +2,7 @@
 
 namespace TalentPortal;
 
+use TalentPortal\Admin\Menu;
 use TalentPortal\Traits\Helpers;
 use TalentPortal\Traits\Singleton;
 
@@ -24,8 +25,9 @@ class Admin
 
     public function __construct()
     {
-        add_action( 'admin_menu', [ $this, 'add_menu' ] );
         add_action( 'admin_notices', [ $this, 'show_activation_notice' ] );
+        $this->register_admin_menu();
+
     }
 
     /**
@@ -33,25 +35,54 @@ class Admin
      *
      * @return void
      */
-    public function add_menu()
+    public function register_admin_menu()
     {
-        add_menu_page(
-            __( 'Talent Portal', 'talent-portal' ),
-            __( 'Talent Portal', 'talent-portal' ),
-            'manage_options',
-            'talent-portal',
-            [ $this, 'render' ],
-            'dashicons-admin-users',
-        );
+        $pages = [
+            [
+                'page_title' => __( 'Talent Portal', 'talent-portal' ),
+                'menu_title' => __( 'Talent Portal', 'talent-portal' ),
+                'capability' => 'manage_options',
+                'menu_slug'  => 'talent-portal',
+                'callback'   => array( $this, 'application_list' ),
+                'icon_url'   => 'dashicons-admin-users',
+                'position'   => 110,
+             ],
+         ];
+        $sup_pages = [
+            [
+                'parent_slug' => 'talent-portal',
+                'page_title'  => __( 'Overview', 'talent-portal' ),
+                'menu_title'  => __( 'Overview', 'talent-portal' ),
+                'capability'  => 'manage_options',
+                'menu_slug'   => 'talent-overview',
+                'callback'    => array( $this, 'overview' ),
+             ],
+         ];
+
+        ( new Menu )->add_pages( $pages )
+            ->with_sub_page( __( 'Applicant List', 'talent-portal' ) )
+            ->add_sup_pages( $sup_pages )
+            ->register();
     }
 
     /**
-     * Render view
+     * Render Overview
      *
      * @return void
      */
 
-    public function render()
+    public function overview()
+    {
+        $this->view( 'overview' );
+    }
+
+    /**
+     * Render Applicant View
+     *
+     * @return void
+     */
+
+    public function application_list()
     {
         $this->view( 'applicant-view' );
     }
