@@ -3,10 +3,10 @@
 - **Step 1: Prerequisites**
 
 - Make sure you have the following software installed on your machine:
-  - PHP (>= 7.2.0)
+  - PHP (>= 7.4.0)
   - MySQL (>= 5.0)
   - Composer
-  - Node.js (>= 16.x)
+  - Node.js (>= 18.x)
 
 - **Step 2: Setup wordpress development environment**
 
@@ -15,7 +15,6 @@
 ```php
 define( 'WP_DEBUG', true );
 define( 'WP_DEBUG_LOG', true );
-define( 'SCRIPT_DEBUG', true );
 ```
 
 - **Step 3: Clone the Repository**
@@ -63,7 +62,7 @@ npm run build
 npm run dev
 ```
 
-## 🎉 Congratulations! You have successfully installed Dokan on your development environment
+## 🎉 Congratulations! You have successfully installed Talent Portal on your development environment
 
 ## Talent Portal Guide for Developers
 

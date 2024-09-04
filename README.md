@@ -13,18 +13,15 @@ A WordPress plugin to collect applicant information via a form, store submission
 - Pagination, search, and delete functionality in the admin panel.
 - Localization support.
 
-## Installation
-
-1. Upload the plugin files to the `/wp-content/plugins/talent-portal` directory, or install the plugin through the WordPress plugins screen directly.
-2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Use the shortcode `[applicant_form]` to display the form on any page or post.
-
 ## Download and Installation
 
 1. Download the plugin from the [GitHub repository](https://github.com/kzamanbd/talent-portal/releases/download/v1.0.0/talent-portal.zip).
-2. Upload the plugin to your WordPress site.
-3. Activate the plugin.
+2. Upload the plugin files to the `/wp-content/plugins/talent-portal` directory, or install the plugin through the WordPress plugins screen directly by uploading the zip file.
+3. Activate the plugin through the 'Plugins' screen in WordPress.
 4. Use the shortcode `[applicant_form]` to display the form on any page or post.
+5. Visit the `Talent Portal` menu in the WordPress admin panel to manage submissions.
+6. Enjoy!
+7. If you have any issues, please run composer install and npm install to install the dependencies.
 
 ## [Changelog](https://github.com/kzamanbd/talent-portal/commits/v1.0.0)
 
